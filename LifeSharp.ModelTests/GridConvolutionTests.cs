@@ -20,7 +20,28 @@ namespace LifeSharp.Model.Tests
         [TestMethod()]
         public void EvolveTest()
         {
-            Assert.Fail();
+            // Test a glider
+            int[,] cells =
+            {
+                { 0, 1, 0, 0 },
+                { 0, 0, 1, 0 },
+                { 1, 1, 1, 0 },
+                { 0, 0, 0, 0 },
+            };
+
+            int[,] expected =
+            {
+                { 0, 0, 0, 0 },
+                { 1, 0, 1, 0 },
+                { 0, 1, 1, 0 },
+                { 0, 1, 0, 0 }
+            };
+
+            GridConvolution grid = new GridConvolution(cells);
+            grid.Evolve();
+
+            CollectionAssert.AreEqual(expected, grid.Cells);
+            
         }
     }
 }

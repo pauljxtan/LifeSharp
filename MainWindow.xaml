@@ -6,7 +6,15 @@
         xmlns:local="clr-namespace:LifeSharp"
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
-    <Grid>
-        
-    </Grid>
+    <DockPanel>
+        <StackPanel DockPanel.Dock="Bottom"
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Center">
+
+            <Button x:Name="startButton" Margin="5">Start</Button>
+            <Button x:Name="stopButton" Margin="5">Stop</Button>
+        </StackPanel>
+        <Grid x:Name="grid" Background="Black">
+        </Grid>
+    </DockPanel>
 </Window>
