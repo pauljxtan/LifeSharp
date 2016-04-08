@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LifeSharp", "LifeSharp.csproj", "{851C8700-91C5-4BDF-A903-50E22C0BA062}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LifeSharp.Model", "..\LifeSharp.Model\LifeSharp.Model.csproj", "{BFA7B614-8C8D-4CBA-99F8-C7943FEF2109}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LifeSharp.ModelTests", "LifeSharp.ModelTests\LifeSharp.ModelTests.csproj", "{9879520D-5788-486B-BDFE-3F189C685C5B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{851C8700-91C5-4BDF-A903-50E22C0BA062}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{851C8700-91C5-4BDF-A903-50E22C0BA062}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{851C8700-91C5-4BDF-A903-50E22C0BA062}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{851C8700-91C5-4BDF-A903-50E22C0BA062}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BFA7B614-8C8D-4CBA-99F8-C7943FEF2109}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BFA7B614-8C8D-4CBA-99F8-C7943FEF2109}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BFA7B614-8C8D-4CBA-99F8-C7943FEF2109}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BFA7B614-8C8D-4CBA-99F8-C7943FEF2109}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9879520D-5788-486B-BDFE-3F189C685C5B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9879520D-5788-486B-BDFE-3F189C685C5B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9879520D-5788-486B-BDFE-3F189C685C5B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9879520D-5788-486B-BDFE-3F189C685C5B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
