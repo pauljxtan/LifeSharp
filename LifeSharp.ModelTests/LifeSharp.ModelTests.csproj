@@ -58,7 +58,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\LifeSharp.Model\LifeSharp.Model.csproj">
+    <ProjectReference Include="..\LifeSharp.Model\LifeSharp.Model.csproj">
       <Project>{BFA7B614-8C8D-4CBA-99F8-C7943FEF2109}</Project>
       <Name>LifeSharp.Model</Name>
     </ProjectReference>
