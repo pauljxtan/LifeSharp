@@ -12,12 +12,6 @@ namespace LifeSharp.Model.Tests
     public class GridConvolutionTests
     {
         [TestMethod()]
-        public void GridConvolutionTest()
-        {
-            Assert.Fail();
-        }
-
-        [TestMethod()]
         public void EvolveTest()
         {
             // Test a glider
