@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -33,19 +34,6 @@ namespace LifeSharp.Model
                 }
             }
         }
-
-        /* Read preset seed from text file */
-        public Grid(String filePath)
-        {
-            throw new NotImplementedException();
-        }
-
-        /*
-        public void toggleCellState(int x, int y)
-        {
-            Cells[x, y] = Math.Abs(Cells[x, y] - 1);
-        }
-        */
 
         public abstract void Evolve();
     }
