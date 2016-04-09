@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LifeSharp.Model", "LifeShar
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LifeSharp.ModelTests", "LifeSharp.ModelTests\LifeSharp.ModelTests.csproj", "{9879520D-5788-486B-BDFE-3F189C685C5B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LifeSharp.ViewModel", "LifeSharp.ViewModel\LifeSharp.ViewModel.csproj", "{F98181F3-48E2-4B92-973D-7463AAA6C271}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{9879520D-5788-486B-BDFE-3F189C685C5B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9879520D-5788-486B-BDFE-3F189C685C5B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9879520D-5788-486B-BDFE-3F189C685C5B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F98181F3-48E2-4B92-973D-7463AAA6C271}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F98181F3-48E2-4B92-973D-7463AAA6C271}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F98181F3-48E2-4B92-973D-7463AAA6C271}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F98181F3-48E2-4B92-973D-7463AAA6C271}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
