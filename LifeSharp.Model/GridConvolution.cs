@@ -27,11 +27,12 @@ namespace LifeSharp.Model
         public int[,] LiveNeighbourCounts { get; private set; }
 
         /// <summary>
-        /// Constructs a grid of a given height and width, with all cells initialized to zero.
+        /// Constructs a grid of a given size, with all cells initialized to zero by default.
         /// </summary>
-        /// <param name="height">The height of the grid, i.e., the number of rows.</param>
-        /// <param name="width">The width of the grid, i.e., the number of columns.</param>
-        public GridConvolution(int height, int width) : base(height, width)
+        /// <param name="height">The height (i.e. number of rows) of the grid.</param>
+        /// <param name="width">The width (i.e. number of rows) of the grid.</param>
+        /// <param name="randomize">Whether to randomize the initial seed.</param>
+        public GridConvolution(int height, int width, bool randomize) : base(height, width, randomize)
         {
             UpdateNeighbourCounts();
         }

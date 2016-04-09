@@ -22,14 +22,15 @@ namespace LifeSharp.Model
         public Grid Universe { get; }
 
         /// <summary>
-        /// Constructs an Automaton of a given size, with all cells initialized to zero.
+        /// Constructs an Automaton of a given size, with all cells initialized to zero by default.
         /// </summary>
         /// <param name="height">The height (i.e. number of rows) of the grid.</param>
         /// <param name="width">The width (i.e. number of rows) of the grid.</param>
-        public Automaton(int height, int width)
+        /// <param name="randomize">Whether to randomize the initial seed.</param>
+        public Automaton(int height, int width, bool randomize = false)
         {
             Age = 0;
-            Universe = new GridConvolution(width, height);
+            Universe = new GridConvolution(width, height, randomize);
         }
 
         /// <summary>

@@ -14,12 +14,14 @@ namespace LifeSharp.Model.Tests
         [TestMethod()]
         public void GridConvolutionFromSizeTest()
         {
-            var grid = new GridConvolution(4, 2);
+            var grid = new GridConvolution(4, 2, false);
 
             int[,] expected =
             {
-                { 0, 0, 0, 0},
-                { 0, 0, 0, 0}
+                { 0, 0},
+                { 0, 0},
+                { 0, 0},
+                { 0, 0},
             };
 
             int[,] actual = grid.Cells;
