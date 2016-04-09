@@ -16,9 +16,9 @@ namespace LifeSharp.Model.Tests
         [DeploymentItem("glider.txt")]
         public void getArrayFromFileTest()
         {
-            TextReader textReader = File.OpenText(@"glider.txt");
+            TextReader reader = File.OpenText(@"glider.txt");
 
-            int[,] array = Utils.getArrayFromFile(textReader, 10, 10, " ");
+            int[,] array = Utils.getArrayFromFile(reader, 10, 10, " ");
 
             int[,] expected =
             {

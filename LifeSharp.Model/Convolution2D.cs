@@ -27,15 +27,15 @@ namespace LifeSharp.Model
 
             int[,] result = new int[imageHeight, imageWidth];
 
-            for (int i = 0; i < imageHeight; i++)
+            for (int imageRow = 0; imageRow < imageHeight; imageRow++)
             {
-                for (int j = 0; j < imageWidth; j++)
+                for (int imageCol = 0; imageCol < imageWidth; imageCol++)
                 {
-                    for (int m = 0; m < kernelHeight; m++)
+                    for (int kernelRow = 0; kernelRow < kernelHeight; kernelRow++)
                     {
-                        for (int n = 0; n < kernelWidth; n++)
+                        for (int kernelCol = 0; kernelCol < kernelWidth; kernelCol++)
                         {
-                            result[i, j] += imagePadded[i + m, j + n] * kernelFlipped[m, n];
+                            result[imageRow, imageCol] += imagePadded[imageRow + kernelRow, imageCol + kernelCol] * kernelFlipped[kernelRow, kernelCol];
                         }
                     }
                 }
@@ -57,7 +57,6 @@ namespace LifeSharp.Model
                     imagePadded[i + numRowsToPad, j + numColsToPad] = image[i, j];
                 }
             }
-
             return imagePadded;
         }
 
@@ -76,7 +75,6 @@ namespace LifeSharp.Model
                     imageFlipped[row, col] = image[imageHeight - row - 1, imageWidth - col - 1];
                 }
             }
-
             return imageFlipped;
         }
     }

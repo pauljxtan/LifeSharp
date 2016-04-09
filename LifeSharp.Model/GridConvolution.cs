@@ -8,7 +8,7 @@ namespace LifeSharp.Model
 {
     public class GridConvolution : Grid
     {
-        private int[,] kernel =
+        private readonly int[,] kernel =
         {
             { 1, 1, 1 },
             { 1, 0, 1 },
@@ -35,18 +35,18 @@ namespace LifeSharp.Model
         {
             int liveNeighbourCount;
 
-            for (int i = 0; i < Height; i++)
+            for (int row = 0; row < Height; row++)
             {
-                for (int j = 0; j < Width; j++)
+                for (int col = 0; col < Width; col++)
                 {
-                    liveNeighbourCount = liveNeighbourCounts[i, j];
+                    liveNeighbourCount = liveNeighbourCounts[row, col];
                     // Cell is alive
-                    if (Cells[i, j] == 1)
+                    if (Cells[row, col] == 1)
                     {
                         // Less than live 2 neighbours: die by under-population
                         // More than live 3 neighbours: die by over-population
                         if (liveNeighbourCount < 2 || liveNeighbourCount > 3) {
-                            Cells[i, j] = 0;
+                            Cells[row, col] = 0;
                         }
                         // 2 or 3 live neighbours: live on
                     }
@@ -56,12 +56,11 @@ namespace LifeSharp.Model
                         // 3 live neighbours: come alive by reproduction
                         if (liveNeighbourCount == 3)
                         {
-                            Cells[i, j] = 1;
+                            Cells[row, col] = 1;
                         }
                     }
                 }
             }
-
             UpdateNeighbourCounts();
         }
     }

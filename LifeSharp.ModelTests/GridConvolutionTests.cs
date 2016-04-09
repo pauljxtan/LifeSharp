@@ -28,14 +28,13 @@ namespace LifeSharp.Model.Tests
                 { 0, 0, 0, 0 },
                 { 1, 0, 1, 0 },
                 { 0, 1, 1, 0 },
-                { 0, 1, 0, 0 }
+                { 0, 1, 0, 0 },
             };
 
-            GridConvolution grid = new GridConvolution(cells);
+            var grid = new GridConvolution(cells);
             grid.Evolve();
 
             CollectionAssert.AreEqual(expected, grid.Cells);
-            
         }
     }
 }

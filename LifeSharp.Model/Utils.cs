@@ -14,7 +14,7 @@ namespace LifeSharp.Model
         {
             int[,] array = new int[height, width];
 
-            using (TextFieldParser parser = new TextFieldParser(textReader))
+            using (var parser = new TextFieldParser(textReader))
             {
                 parser.SetDelimiters(delimiter);
                 int row = 0;
@@ -28,7 +28,6 @@ namespace LifeSharp.Model
                     row++;
                 }
             }
-
             return array;
         }
     }
