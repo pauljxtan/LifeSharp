@@ -8,8 +8,19 @@ using System.Threading.Tasks;
 
 namespace LifeSharp.Model
 {
+    /// <summary>
+    /// Miscellaneous utility methods.
+    /// </summary>
     public class Utils
     {
+        /// <summary>
+        /// Reads a delimited array of integers from a text file.
+        /// </summary>
+        /// <param name="textReader">A TextReader constructed from the text file.</param>
+        /// <param name="height">The height of the array, i.e. the number of rows.</param>
+        /// <param name="width">The width of the array, i.e. the number of rows.</param>
+        /// <param name="delimiter">The string used to delimit array elements.</param>
+        /// <returns></returns>
         public static int[,] GetArrayFromFile(TextReader textReader, int height, int width, String delimiter)
         {
             int[,] array = new int[height, width];

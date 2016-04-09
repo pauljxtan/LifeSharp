@@ -8,9 +8,6 @@ using System.Windows.Input;
 
 namespace LifeSharp.ViewModel
 {
-    /// <summary>
-    /// Encapsulates an Automaton object and exposes a number of properties for the View to bind to.
-    /// </summary>
     public class Presenter : ObservableObject
     {
         private static int[,] grid = 

@@ -6,31 +6,57 @@ using System.Threading.Tasks;
 
 namespace LifeSharp.Model
 {
+    /// <summary>
+    /// A cellular automaton grid that determines live neighbours via image convolution.
+    /// </summary>
     public class GridConvolution : Grid
     {
-        private readonly int[,] kernel =
+        /// <summary>
+        /// The convolution kernel for computing the number of live neighbours of each cell.
+        /// </summary>
+        private readonly int[,] _kernel =
         {
             { 1, 1, 1 },
             { 1, 0, 1 },
             { 1, 1, 1 }
         };
+
+        /// <summary>
+        /// The number of live neighbours of each cell.
+        /// </summary>
         private int[,] liveNeighbourCounts;
 
-        public GridConvolution(int width, int height) : base(width, height)
+        /// <summary>
+        /// Constructs a grid of a given height and width, with all cells initialized to zero.
+        /// </summary>
+        /// <param name="height">The height of the grid, i.e., the number of rows.</param>
+        /// <param name="width">The width of the grid, i.e., the number of columns.</param>
+        public GridConvolution(int height, int width) : base(height, width)
         {
             UpdateNeighbourCounts();
         }
 
+
+        /// <summary>
+        /// Constructs a grid with an initial configuration.
+        /// </summary>
+        /// <param name="cells">The initial configuration of the grid.</param>
         public GridConvolution(int[,] cells) : base(cells)
         {
             UpdateNeighbourCounts();
         }
 
+        /// <summary>
+        /// Updates the live neighbour counts for all cells.
+        /// </summary>
         private void UpdateNeighbourCounts()
         {
-            liveNeighbourCounts = Convolution2D.Convolve(Cells, kernel);
+            liveNeighbourCounts = Convolution2D.Convolve(Cells, _kernel);
         }
 
+        /// <summary>
+        /// Performs a single evolution of the grid.
+        /// </summary>
         public override void Evolve()
         {
             int liveNeighbourCount;

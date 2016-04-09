@@ -6,10 +6,18 @@ using System.Threading.Tasks;
 
 namespace LifeSharp.Model
 {
+    /// <summary>
+    /// 2-dimensional convolution.
+    /// </summary>
     public class Convolution2D
     {
-        /* Slow brute-force 2D convolution with zero-padding.
-         * TODO: Add other padding options */
+        /// <summary>
+        /// Performs slow brute-force 2-D convolution with zero-padding.
+        /// (TODO: Add other padding options, e.g. periodic boundary conditions)
+        /// </summary>
+        /// <param name="image">The image to convolve.</param>
+        /// <param name="kernel">The convolution kernel.</param>
+        /// <returns>The convolved image.</returns>
         public static int[,] Convolve(int[,] image, int[,] kernel)
         {
             int imageHeight = image.GetLength(0);
@@ -44,6 +52,13 @@ namespace LifeSharp.Model
             return result;
         }
 
+        /// <summary>
+        /// Pads an image with a given number of rows and columns comprised of zeros.
+        /// </summary>
+        /// <param name="image">The image to pad.</param>
+        /// <param name="numRowsToPad">The number of rows to add.</param>
+        /// <param name="numColsToPad">The number of columns to add.</param>
+        /// <returns>The padded image.</returns>
         public static int[,] PadImageWithZeros(int[,] image, int numRowsToPad, int numColsToPad)
         {
             int imageHeight = image.GetLength(0);
@@ -60,7 +75,11 @@ namespace LifeSharp.Model
             return imagePadded;
         }
 
-        /* Flips an image in both dimensions. */
+        /// <summary>
+        /// Flips an image in both dimensions, i.e. horizontally and vertically.
+        /// </summary>
+        /// <param name="image">The image to flip.</param>
+        /// <returns>The flipped image.</returns>
         public static int[,] FlipImageBothDims(int[,] image)
         {
             int imageHeight = image.GetLength(0);
