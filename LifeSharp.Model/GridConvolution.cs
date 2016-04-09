@@ -24,7 +24,7 @@ namespace LifeSharp.Model
         /// <summary>
         /// The number of live neighbours of each cell.
         /// </summary>
-        private int[,] liveNeighbourCounts;
+        public int[,] LiveNeighbourCounts { get; private set; }
 
         /// <summary>
         /// Constructs a grid of a given height and width, with all cells initialized to zero.
@@ -51,7 +51,7 @@ namespace LifeSharp.Model
         /// </summary>
         private void UpdateNeighbourCounts()
         {
-            liveNeighbourCounts = Convolution2D.Convolve(Cells, _kernel);
+            LiveNeighbourCounts = Convolution2D.Convolve(Cells, _kernel);
         }
 
         /// <summary>
@@ -65,7 +65,7 @@ namespace LifeSharp.Model
             {
                 for (int col = 0; col < Width; col++)
                 {
-                    liveNeighbourCount = liveNeighbourCounts[row, col];
+                    liveNeighbourCount = LiveNeighbourCounts[row, col];
                     // Cell is alive
                     if (Cells[row, col] == 1)
                     {
