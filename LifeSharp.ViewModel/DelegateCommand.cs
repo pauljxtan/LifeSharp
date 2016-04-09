@@ -7,7 +7,7 @@ using System.Windows.Input;
 
 namespace LifeSharp.ViewModel
 {
-    class DelegateCommand : ICommand
+    public class DelegateCommand : ICommand
     {
         private readonly Action _action;
 

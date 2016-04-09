@@ -17,6 +17,12 @@ namespace LifeSharp.Model
             Universe = new GridConvolution(width, height);
         }
 
+        public Automaton(int[,] cells)
+        {
+            Age = 0;
+            Universe = new GridConvolution(cells);
+        }
+
         public void Evolve()
         {
             Universe.Evolve();

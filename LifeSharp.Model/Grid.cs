@@ -35,6 +35,22 @@ namespace LifeSharp.Model
             }
         }
 
+        public string GetCellsAsString()
+        {
+            string str = "";
+
+            for (int row = 0; row < Height; row++)
+            {
+                for (int col = 0; col < Width; col++)
+                {
+                    str += Cells[row, col] + " ";
+                }
+                str += "\n";
+            }
+
+            return str;
+        }
+
         public abstract void Evolve();
     }
 }

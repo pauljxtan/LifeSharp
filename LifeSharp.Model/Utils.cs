@@ -10,7 +10,7 @@ namespace LifeSharp.Model
 {
     public class Utils
     {
-        public static int[,] getArrayFromFile(TextReader textReader, int height, int width, String delimiter)
+        public static int[,] GetArrayFromFile(TextReader textReader, int height, int width, String delimiter)
         {
             int[,] array = new int[height, width];
 
