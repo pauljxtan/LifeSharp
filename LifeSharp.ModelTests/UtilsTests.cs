@@ -14,7 +14,7 @@ namespace LifeSharp.Model.Tests
     {
         [TestMethod()]
         [DeploymentItem("glider.txt")]
-        public void getArrayFromFileTest()
+        public void GetArrayFromFileTest()
         {
             TextReader reader = File.OpenText(@"glider.txt");
 
