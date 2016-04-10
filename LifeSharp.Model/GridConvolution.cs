@@ -22,6 +22,11 @@ namespace LifeSharp.Model
         };
 
         /// <summary>
+        /// The boundary conditions for convolution operations.
+        /// </summary>
+        private readonly string _boundaryConditions;
+
+        /// <summary>
         /// The number of live neighbours of each cell.
         /// </summary>
         public int[,] LiveNeighbourCounts { get; private set; }
@@ -32,8 +37,15 @@ namespace LifeSharp.Model
         /// <param name="height">The height (i.e. number of rows) of the grid.</param>
         /// <param name="width">The width (i.e. number of rows) of the grid.</param>
         /// <param name="randomize">Whether to randomize the initial seed.</param>
-        public GridConvolution(int height, int width, bool randomize) : base(height, width, randomize)
+        /// <param name="boundaryConditions">The boundary conditions for convolution: "zeros" or "periodic".</param>
+        public GridConvolution(int height, int width, bool randomize, string boundaryConditions = "zeros") : base(height, width, randomize)
         {
+            if (!(boundaryConditions.Equals("zeros") || boundaryConditions.Equals("periodic")))
+            {
+                throw new ArgumentException();
+            }
+            _boundaryConditions = boundaryConditions;
+            
             UpdateNeighbourCounts();
         }
 
@@ -42,8 +54,15 @@ namespace LifeSharp.Model
         /// Constructs a grid with an initial configuration.
         /// </summary>
         /// <param name="cells">The initial configuration of the grid.</param>
-        public GridConvolution(int[,] cells) : base(cells)
+        /// <param name="boundaryConditions">The boundary conditions for convolution: "zeros" or "periodic".</param>
+        public GridConvolution(int[,] cells, string boundaryConditions = "zeros") : base(cells)
         {
+            if (!(boundaryConditions.Equals("zeros") || boundaryConditions.Equals("periodic")))
+            {
+                throw new ArgumentException();
+            }
+            _boundaryConditions = boundaryConditions;
+
             UpdateNeighbourCounts();
         }
 
@@ -52,6 +71,7 @@ namespace LifeSharp.Model
         /// </summary>
         private void UpdateNeighbourCounts()
         {
+            // TODO: send boundary conditions to convolution method
             LiveNeighbourCounts = Convolution2D.Convolve(Cells, _kernel);
         }
 
