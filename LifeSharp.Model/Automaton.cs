@@ -22,6 +22,17 @@ namespace LifeSharp.Model
         public int[,] Universe { get; private set; }
 
         /// <summary>
+        /// A string representation of the universe.
+        /// </summary>
+        public string UniverseString
+        {
+            get
+            {
+                return _universeGrid.GetCellsAsString();
+            }
+        }
+
+        /// <summary>
         /// An intermediate representation of the universe grid for encapsulation purposes.
         /// </summary>
         private Grid _universeGrid;
