@@ -42,7 +42,7 @@
   <ItemGroup>
     <Compile Include="DelegateCommand.cs" />
     <Compile Include="ObservableObject.cs" />
-    <Compile Include="Presenter.cs" />
+    <Compile Include="AutomatonPresenter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

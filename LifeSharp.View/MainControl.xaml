@@ -6,9 +6,10 @@
              xmlns:ViewModel="clr-namespace:LifeSharp.ViewModel;assembly=LifeSharp.ViewModel"
              mc:Ignorable="d"
              d:DesignHeight="300" d:DesignWidth="300"
-             d:DataContext="{d:DesignInstance ViewModel:Presenter}">
+             d:DataContext="{d:DesignInstance ViewModel:AutomatonPresenter}">
     <StackPanel>
-        <TextBlock Text="{Binding TestText}" Margin="5"></TextBlock>
+        <Grid Name="UniverseGrid"></Grid>
+        <TextBlock Text="{Binding UniverseString}" Margin="5"></TextBlock>
         <Button Command="{Binding EvolveCommand}" Margin="5">Evolve</Button>
     </StackPanel>
 </UserControl>
