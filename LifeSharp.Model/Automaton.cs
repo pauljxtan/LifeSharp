@@ -19,7 +19,12 @@ namespace LifeSharp.Model
         /// <summary>
         /// The universe of the automaton represented as a 2-D grid.
         /// </summary>
-        public Grid Universe { get; }
+        public int[,] Universe { get; private set; }
+
+        /// <summary>
+        /// An intermediate representation of the universe grid for encapsulation purposes.
+        /// </summary>
+        private Grid _universeGrid;
 
         /// <summary>
         /// Constructs an Automaton of a given size, with all cells initialized to zero by default.
@@ -30,7 +35,8 @@ namespace LifeSharp.Model
         public Automaton(int height, int width, bool randomize = false)
         {
             Age = 0;
-            Universe = new GridConvolution(width, height, randomize);
+            _universeGrid = new GridConvolution(width, height, randomize);
+            Universe = _universeGrid.Cells;
         }
 
         /// <summary>
@@ -40,7 +46,8 @@ namespace LifeSharp.Model
         public Automaton(int[,] cells)
         {
             Age = 0;
-            Universe = new GridConvolution(cells);
+            _universeGrid = new GridConvolution(cells);
+            Universe = _universeGrid.Cells;
         }
 
         /// <summary>
@@ -48,7 +55,8 @@ namespace LifeSharp.Model
         /// </summary>
         public void Evolve()
         {
-            Universe.Evolve();
+            _universeGrid.Evolve();
+            Universe = _universeGrid.Cells;
             Age++;
         }
     }
