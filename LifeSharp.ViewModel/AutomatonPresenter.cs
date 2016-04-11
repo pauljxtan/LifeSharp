@@ -16,6 +16,7 @@ namespace LifeSharp.ViewModel
     {
         private int[,] _universe;
         private string _universeString;
+        private ObservableCollection<ObservableCollection<int>> _universeCollection;
         private readonly Automaton _automaton;
 
         public AutomatonPresenter()
@@ -35,6 +36,7 @@ namespace LifeSharp.ViewModel
             _automaton = new Automaton(seed);
             _universe = _automaton.Universe;
             _universeString = _automaton.UniverseString;
+            _universeCollection = _automaton.UniverseCollection;
         }
 
         public int[,] Universe
@@ -64,6 +66,19 @@ namespace LifeSharp.ViewModel
             }
         }
 
+        public ObservableCollection<ObservableCollection<int>> UniverseCollection
+        {
+            get
+            {
+                return _universeCollection;
+            }
+            private set
+            {
+                _universeCollection = value;
+                RaisePropertyChangedEvent("UniverseCollection");
+            }
+        }
+
         public ICommand EvolveCommand
         {
             get
@@ -77,6 +92,7 @@ namespace LifeSharp.ViewModel
             _automaton.Evolve();
             Universe = _automaton.Universe;
             UniverseString = _automaton.UniverseString;
+            UniverseCollection = _automaton.UniverseCollection;
         }
     }
 }
