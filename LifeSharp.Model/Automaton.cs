@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,6 +21,15 @@ namespace LifeSharp.Model
         /// The universe of the automaton represented as a 2-D grid.
         /// </summary>
         public int[,] Universe { get; private set; }
+
+        // TODO: Maybe use ObservableCollection from the start instead of int[,]
+        public ObservableCollection<ObservableCollection<int>> UniverseCollection
+        {
+            get
+            {
+                return Utils.ConvertArrayToCollection(Universe);
+            }
+        }
 
         /// <summary>
         /// A string representation of the universe.
