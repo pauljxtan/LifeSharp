@@ -7,8 +7,33 @@
              mc:Ignorable="d"
              d:DesignHeight="300" d:DesignWidth="300"
              d:DataContext="{d:DesignInstance ViewModel:AutomatonPresenter}">
+
+    <UserControl.Resources>
+        <ViewModel:IntToColorConverter x:Key="intToColorConverter"></ViewModel:IntToColorConverter>
+        <DataTemplate x:Key="GridTemplateCol">
+            <Rectangle Width="10" Height="10" Margin="0">
+                <Rectangle.Fill>
+                    <SolidColorBrush Color="{Binding Converter={StaticResource intToColorConverter}}"></SolidColorBrush>
+                </Rectangle.Fill>
+            </Rectangle>
+        </DataTemplate>
+
+        <DataTemplate x:Key="GridTemplateRow">
+            <ItemsControl ItemsSource="{Binding}" ItemTemplate="{DynamicResource GridTemplateCol}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Orientation="Horizontal"></StackPanel>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+            </ItemsControl>
+        </DataTemplate>
+    </UserControl.Resources>
+
     <StackPanel>
-        <Grid Name="UniverseGrid"></Grid>
+        <Grid>
+            <ItemsControl ItemsSource="{Binding UniverseCollection}"  ItemTemplate="{DynamicResource GridTemplateRow}"></ItemsControl>
+        </Grid>
+
         <TextBlock Text="{Binding UniverseString}" Margin="5"></TextBlock>
         <Button Command="{Binding EvolveCommand}" Margin="5">Evolve</Button>
     </StackPanel>
