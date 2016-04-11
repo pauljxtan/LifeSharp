@@ -1,6 +1,7 @@
 ﻿using Microsoft.VisualBasic.FileIO;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -40,6 +41,22 @@ namespace LifeSharp.Model
                 }
             }
             return array;
+        }
+
+        public static ObservableCollection<ObservableCollection<int>> ConvertArrayToCollection(int[,] array)
+        {
+            var list = new ObservableCollection<ObservableCollection<int>>();
+
+            for (int row = 0; row < array.GetLength(0); row++)
+            {
+                list.Add(new ObservableCollection<int>());
+                for (int col = 0; col < array.GetLength(1); col++)
+                {
+                    list.Last().Add(array[row, col]);
+                }
+            }
+
+            return list;
         }
     }
 }
