@@ -35,7 +35,7 @@ namespace LifeSharp.Model.Tests
                 { 244, 433, 344 }
             };
 
-            int[,] result = Convolution2D.Convolve(image, kernel);
+            int[,] result = Convolution2D.Convolve(image, kernel, BoundaryConditions.Zeros);
 
             CollectionAssert.AreEqual(expected, result);
         }

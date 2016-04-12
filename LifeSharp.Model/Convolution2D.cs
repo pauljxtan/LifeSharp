@@ -18,9 +18,9 @@ namespace LifeSharp.Model
         /// </summary>
         /// <param name="image">The image to convolve.</param>
         /// <param name="kernel">The convolution kernel.</param>
-        /// <param name="boundaryConditions">The boundary conditions for the convolution</param>
+        /// <param name="boundaryConditions">The boundary conditions for convolution.</param>
         /// <returns>The convolved image.</returns>
-        public static int[,] Convolve(int[,] image, int[,] kernel, BoundaryConditions boundaryConditions = BoundaryConditions.Zeros)
+        public static int[,] Convolve(int[,] image, int[,] kernel, BoundaryConditions boundaryConditions)
         {
             int imageHeight = image.GetLength(0);
             int imageWidth = image.GetLength(1);
