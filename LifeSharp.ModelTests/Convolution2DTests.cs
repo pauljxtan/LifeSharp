@@ -41,7 +41,7 @@ namespace LifeSharp.Model.Tests
         }
 
         [TestMethod()]
-        public void PadImageWithZerosTest()
+        public void PadImageConstantTest()
         {
             int[,] image =
             {
@@ -50,19 +50,20 @@ namespace LifeSharp.Model.Tests
                 { 7, 8, 9 }
             };
 
+            int padValue = 1;
             int numRowsToPad = 1;
             int numColsToPad = 2;
 
             int[,] expected =
             {
-                { 0, 0, 0, 0, 0, 0, 0 },
-                { 0, 0, 1, 2, 3, 0, 0 },
-                { 0, 0, 4, 5, 6, 0, 0 },
-                { 0, 0, 7, 8, 9, 0, 0 },
-                { 0, 0, 0, 0, 0, 0, 0 }
+                { 1, 1, 1, 1, 1, 1, 1 },
+                { 1, 1, 1, 2, 3, 1, 1 },
+                { 1, 1, 4, 5, 6, 1, 1 },
+                { 1, 1, 7, 8, 9, 1, 1 },
+                { 1, 1, 1, 1, 1, 1, 1 }
             };
 
-            int[,] imagePadded = Convolution2D.PadImageWithZeros(image, numRowsToPad, numColsToPad);
+            int[,] imagePadded = Convolution2D.PadImageConstant(image, padValue, numRowsToPad, numColsToPad);
 
             CollectionAssert.AreEqual(expected, imagePadded);
         }
