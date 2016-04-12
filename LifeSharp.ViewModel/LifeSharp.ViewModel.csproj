@@ -45,7 +45,7 @@
     <Compile Include="DelegateCommand.cs" />
     <Compile Include="IntToColorConverter.cs" />
     <Compile Include="ObservableObject.cs" />
-    <Compile Include="AutomatonPresenter.cs" />
+    <Compile Include="AutomatonViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -1,17 +1,23 @@
-﻿<UserControl x:Class="LifeSharp.View.MainControl"
+﻿<UserControl x:Class="LifeSharp.View.AutomatonView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:ViewModel="clr-namespace:LifeSharp.ViewModel;assembly=LifeSharp.ViewModel"
              mc:Ignorable="d"
-             d:DesignHeight="300" d:DesignWidth="300"
-             d:DataContext="{d:DesignInstance ViewModel:AutomatonPresenter}">
+             d:DesignHeight="640" d:DesignWidth="320">
 
+    <UserControl.DataContext>
+        <ViewModel:AutomatonViewModel></ViewModel:AutomatonViewModel>
+    </UserControl.DataContext>
+    
     <UserControl.Resources>
         <ViewModel:IntToColorConverter x:Key="intToColorConverter"></ViewModel:IntToColorConverter>
         <DataTemplate x:Key="GridTemplateCol">
-            <Rectangle Width="10" Height="10" Margin="0">
+            <!--<Rectangle Stretch="UniformToFill" Margin="0"
+                       Width="{Binding ActualWidth, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UniformGrid}}}">-->
+            <Rectangle Height="10" Width="10" Margin="0">
+            <!--<Rectangle DockPanel.Dock="Top" HorizontalAlignment="Center">-->
                 <Rectangle.Fill>
                     <SolidColorBrush Color="{Binding Converter={StaticResource intToColorConverter}}"></SolidColorBrush>
                 </Rectangle.Fill>
@@ -22,6 +28,7 @@
             <ItemsControl ItemsSource="{Binding}" ItemTemplate="{DynamicResource GridTemplateCol}">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
+                        <!--DockPanel></DockPanel>-->
                         <StackPanel Orientation="Horizontal"></StackPanel>
                     </ItemsPanelTemplate>
                 </ItemsControl.ItemsPanel>
@@ -30,11 +37,15 @@
     </UserControl.Resources>
 
     <StackPanel>
-        <Grid>
+        <UniformGrid>
             <ItemsControl ItemsSource="{Binding UniverseCollection}"  ItemTemplate="{DynamicResource GridTemplateRow}"></ItemsControl>
-        </Grid>
-
+        </UniformGrid>
         <TextBlock Text="{Binding UniverseString}" Margin="5"></TextBlock>
+        <TextBlock Text="Number of evolutions:"></TextBlock>
+        <TextBox Text="{Binding NumEvolutions, UpdateSourceTrigger=PropertyChanged}" Margin="5"></TextBox>
+        <TextBlock Text="Delay between evolutions [milliseconds] (doesn't include computation time):"></TextBlock>
+        <TextBox Text="{Binding DelayBetweenEvolutions, UpdateSourceTrigger=PropertyChanged}" Margin="5"></TextBox>
         <Button Command="{Binding EvolveCommand}" Margin="5">Evolve</Button>
+        <Button>Reset</Button>
     </StackPanel>
 </UserControl>

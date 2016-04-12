@@ -48,7 +48,7 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
-    <Page Include="MainControl.xaml">
+    <Page Include="AutomatonView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -56,8 +56,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Compile Include="MainControl.xaml.cs">
-      <DependentUpon>MainControl.xaml</DependentUpon>
+    <Compile Include="AutomatonView.xaml.cs">
+      <DependentUpon>AutomatonView.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>

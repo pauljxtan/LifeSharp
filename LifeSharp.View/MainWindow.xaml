@@ -8,7 +8,7 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
     <Window.DataContext>
-        <ViewModel:AutomatonPresenter></ViewModel:AutomatonPresenter>
+        <ViewModel:AutomatonViewModel></ViewModel:AutomatonViewModel>
     </Window.DataContext>
-    <View:MainControl></View:MainControl>
+    <View:AutomatonView></View:AutomatonView>
 </Window>
