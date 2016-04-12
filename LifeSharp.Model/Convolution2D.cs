@@ -104,16 +104,32 @@ namespace LifeSharp.Model
 
         public static int[,] PadImagePeriodic(int[,] image, int numRowsToPad, int numColsToPad)
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
 
-            /*
             int imageHeight = image.GetLength(0);
             int imageWidth = image.GetLength(1);
+            int imagePaddedHeight = imageHeight + 2 * numRowsToPad;
+            int imagePaddedWidth = imageWidth + 2 * numColsToPad;
 
-            int[,] imagePadded = new int[imageHeight + 2 * numRowsToPad, imageWidth + 2 * numColsToPad];
+            int[,] imagePadded = new int[imagePaddedHeight, imagePaddedWidth];
+
+            int rowShift;
+            int colShift;
+
+            for (int row = 0; row < imagePaddedHeight; row++)
+            {
+                for (int col = 0; col < imagePaddedWidth; col++)
+                {
+                    rowShift = row + numColsToPad;
+                    while (rowShift > imageHeight - 1) rowShift -= imageHeight;
+                    colShift = col + numRowsToPad;
+                    while (colShift > imageWidth - 1) colShift -= imageWidth;
+
+                    imagePadded[row, col] = image[rowShift, colShift];
+                }
+            }
 
             return imagePadded;
-            */
         }
 
         /// <summary>

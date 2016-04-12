@@ -69,6 +69,33 @@ namespace LifeSharp.Model.Tests
         }
 
         [TestMethod()]
+        public void PadImagePeriodicTest()
+        {
+            int[,] image =
+            {
+                { 1, 2, 3 },
+                { 4, 5, 6 },
+                { 7, 8, 9 },
+            };
+
+            int numRowsToPad = 1;
+            int numColsToPad = 2;
+
+            int[,] expected =
+            {
+                { 8, 9, 7, 8, 9, 7, 8 },
+                { 2, 3, 1, 2, 3, 1, 2 },
+                { 5, 6, 4, 5, 6, 4, 5 },
+                { 8, 9, 7, 8, 9, 7, 8 },
+                { 2, 3, 1, 2, 3, 1, 2 }
+            };
+
+            int[,] imagePadded = Convolution2D.PadImagePeriodic(image, numRowsToPad, numColsToPad);
+
+            CollectionAssert.AreEqual(expected, imagePadded);
+        }
+
+        [TestMethod()]
         public void FlipImageBothDimsTest()
         {
             int[,] image =
