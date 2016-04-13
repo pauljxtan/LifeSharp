@@ -1,4 +1,6 @@
-﻿namespace LifeSharp.Model
+﻿using System;
+
+namespace LifeSharp.Model
 {
     /// <summary>
     /// A cellular automaton grid that determines live neighbours via image convolution.
@@ -18,12 +20,10 @@
         public GridConvolution(int height, int width, bool randomize, BoundaryConditions boundaryConditions = BoundaryConditions.Zeros)
             : base(height, width, randomize, boundaryConditions)
         {
-            UpdateNeighbourCounts();
         }
 
         public GridConvolution(int[,] cells, BoundaryConditions boundaryConditions) : base(cells, boundaryConditions)
         {
-            UpdateNeighbourCounts();
         }
 
         protected override void UpdateNeighbourCounts()

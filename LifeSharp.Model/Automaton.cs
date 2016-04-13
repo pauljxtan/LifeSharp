@@ -107,5 +107,11 @@ namespace LifeSharp.Model
             _universe.Evolve();
             Age++;
         }
+
+        public void Reset()
+        {
+            Age = 0;
+            _universe.Reset();
+        }
     }
 }

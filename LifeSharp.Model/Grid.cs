@@ -18,6 +18,12 @@ namespace LifeSharp.Model
         protected readonly BoundaryConditions _boundaryConditions;
 
         /// <summary>
+        /// A record of the initial grid.
+        /// </summary>
+        private readonly int[,] _cellsInitial;
+
+
+        /// <summary>
         /// Constructs a grid of a given size, with all cells initialized to zero by default.
         /// </summary>
         /// <param name="height">The height (i.e. number of rows) of the grid.</param>
@@ -28,8 +34,8 @@ namespace LifeSharp.Model
         {
             Height = height;
             Width = width;
-            Cells = new int[height, width];
             _boundaryConditions = boundaryConditions;
+            Cells = new int[height, width];
 
             if (randomize)
             {
@@ -43,6 +49,8 @@ namespace LifeSharp.Model
                     }
                 }
             }
+            _cellsInitial = Utils.GetArrayDeepCopy(Cells);
+            UpdateNeighbourCounts();
         }
 
         /// <summary>
@@ -54,6 +62,7 @@ namespace LifeSharp.Model
         {
             Height = cells.GetLength(0);
             Width = cells.GetLength(1);
+            _boundaryConditions = boundaryConditions;
             Cells = new int[Height, Width];
             for (int row = 0; row < Height; row++)
             {
@@ -62,7 +71,8 @@ namespace LifeSharp.Model
                     Cells[row, col] = cells[row, col];
                 }
             }
-            _boundaryConditions = boundaryConditions;
+            _cellsInitial = Utils.GetArrayDeepCopy(Cells);
+            UpdateNeighbourCounts();
         }
 
         /// <summary>
@@ -78,7 +88,7 @@ namespace LifeSharp.Model
         /// <summary>
         /// The cells in the grid, represented by 0s and 1s.
         /// </summary>
-        public int[,] Cells { get; }
+        public int[,] Cells { get; private set; }
 
         /// <summary>
         /// The number of live neighbours of each cell.
@@ -140,6 +150,16 @@ namespace LifeSharp.Model
             }
             UpdateNeighbourCounts();
         }
+
+        /// <summary>
+        /// Resets the grid to its initial state.
+        /// </summary>
+        public void Reset()
+        {
+            Cells = Utils.GetArrayDeepCopy(_cellsInitial);
+            UpdateNeighbourCounts();
+        }
+
 
         /// <summary>
         /// Updates the live neighbour counts for all cells.
