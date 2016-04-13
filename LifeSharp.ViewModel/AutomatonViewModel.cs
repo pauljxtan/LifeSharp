@@ -12,9 +12,9 @@ namespace LifeSharp.ViewModel
     public class AutomatonViewModel : ObservableObject
     {
         private readonly Automaton _automaton;
-        private int _numEvolutions;
+        private int _age;
+        private int _numEvolutionsToDo;
         private int _delayBetweenEvolutions;
-        private int[,] _universe;
         private string _universeString;
         private ObservableCollection<ObservableCollection<int>> _universeCollection;
 
@@ -36,22 +36,21 @@ namespace LifeSharp.ViewModel
             };
 
             _automaton = new Automaton(seed);
-            _universe = _automaton.Universe;
-            _universeString = _automaton.UniverseString;
-            _universeCollection = _automaton.UniverseCollection;
-            _numEvolutions = 1;
+            UniverseString = _automaton.UniverseString;
+            UniverseCollection = _automaton.UniverseCollection;
+            NumEvolutionsToDo = 1;
         }
 
-        public int NumEvolutions
+        public int NumEvolutionsToDo
         {
             get
             {
-                return _numEvolutions;
+                return _numEvolutionsToDo;
             }
             set
             {
                 if (value < 0) throw new ArgumentOutOfRangeException();
-                _numEvolutions = value;
+                _numEvolutionsToDo = value;
                 RaisePropertyChangedEvent("NumEvolutions");
             }
         }
@@ -67,20 +66,6 @@ namespace LifeSharp.ViewModel
                 if (value < 0) throw new ArgumentOutOfRangeException();
                 _delayBetweenEvolutions = value;
                 RaisePropertyChangedEvent("DelayBetweenEvolutions");
-            }
-        }
-
-        public int[,] Universe
-        {
-            get
-            {
-                return _universe;
-            }
-            private set
-            {
-                // TODO: check if actually changed?
-                _universe = value;
-                RaisePropertyChangedEvent("Universe");
             }
         }
 
@@ -118,6 +103,14 @@ namespace LifeSharp.ViewModel
             }
         }
 
+        public ICommand ResetCommand
+        {
+            get
+            {
+                return new DelegateCommand(Reset);
+            }
+        }
+
         private async Task<bool> ExecuteWithDelay(Action action, int delay)
         {
             await Task.Delay(delay);
@@ -128,7 +121,7 @@ namespace LifeSharp.ViewModel
         private async void Evolve()
         {
             EvolveOnce();
-            for (int i = 1; i < _numEvolutions; i++)
+            for (int i = 1; i < _numEvolutionsToDo; i++)
             {
                 await ExecuteWithDelay(EvolveOnce, _delayBetweenEvolutions);
             }
@@ -137,7 +130,13 @@ namespace LifeSharp.ViewModel
         private void EvolveOnce()
         {
             _automaton.Evolve();
-            Universe = _automaton.Universe;
+            UniverseString = _automaton.UniverseString;
+            UniverseCollection = _automaton.UniverseCollection;
+        }
+
+        private void Reset()
+        {
+            _automaton.Reset();
             UniverseString = _automaton.UniverseString;
             UniverseCollection = _automaton.UniverseCollection;
         }

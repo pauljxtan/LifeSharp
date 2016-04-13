@@ -12,10 +12,7 @@
     <UserControl.Resources>
         <ViewModel:IntToColorConverter x:Key="intToColorConverter"></ViewModel:IntToColorConverter>
         <DataTemplate x:Key="GridTemplateCol">
-            <!--<Rectangle Stretch="UniformToFill" Margin="0"
-                       Width="{Binding ActualWidth, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UniformGrid}}}">-->
-            <Rectangle Height="10" Width="10" Margin="0">
-            <!--<Rectangle DockPanel.Dock="Top" HorizontalAlignment="Center">-->
+            <Rectangle Stretch="UniformToFill" Margin="0">
                 <Rectangle.Fill>
                     <SolidColorBrush Color="{Binding Converter={StaticResource intToColorConverter}}"></SolidColorBrush>
                 </Rectangle.Fill>
@@ -26,8 +23,7 @@
             <ItemsControl ItemsSource="{Binding}" ItemTemplate="{DynamicResource GridTemplateCol}">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
-                        <!--DockPanel></DockPanel>-->
-                        <StackPanel Orientation="Horizontal"></StackPanel>
+                        <UniformGrid Rows="1" Margin="0"></UniformGrid>
                     </ItemsPanelTemplate>
                 </ItemsControl.ItemsPanel>
             </ItemsControl>
@@ -38,12 +34,12 @@
         <UniformGrid>
             <ItemsControl ItemsSource="{Binding UniverseCollection}"  ItemTemplate="{DynamicResource GridTemplateRow}"/>
         </UniformGrid>
-        <TextBlock Text="{Binding UniverseString}" Margin="5"></TextBlock>
+        <!--<TextBlock Text="{Binding UniverseString}" Margin="5"></TextBlock>-->
         <TextBlock Text="Number of evolutions:"></TextBlock>
-        <TextBox Text="{Binding NumEvolutions, UpdateSourceTrigger=PropertyChanged}" Margin="5"></TextBox>
+        <TextBox Text="{Binding NumEvolutionsToDo, UpdateSourceTrigger=PropertyChanged}" Margin="5"></TextBox>
         <TextBlock Text="Delay between evolutions [milliseconds] (doesn't include computation time):"></TextBlock>
         <TextBox Text="{Binding DelayBetweenEvolutions, UpdateSourceTrigger=PropertyChanged}" Margin="5"></TextBox>
         <Button Command="{Binding EvolveCommand}" Margin="5">Evolve</Button>
-        <Button Margin="5">Reset</Button>
+        <Button Command="{Binding ResetCommand}" Margin="5">Reset</Button>
     </StackPanel>
 </UserControl>
