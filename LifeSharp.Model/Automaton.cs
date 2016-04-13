@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 // TODO: Set convolution boundary conditions in constructor
 // TODO: Choose grid type (or only use convolution)?
@@ -15,46 +11,6 @@ namespace LifeSharp.Model
     /// </summary>
     public class Automaton
     {
-        /// <summary>
-        /// Computation methods.
-        /// </summary>
-        public enum ComputeMethod { Naive, Convolution }
-
-        /// <summary>
-        /// The age of the automaton, i.e., the number of past evolutions.
-        /// </summary>
-        public int Age { get; private set; }
-
-        // TODO: Maybe use ObservableCollection from the start instead of int[,]
-        public ObservableCollection<ObservableCollection<int>> UniverseCollection
-        {
-            get
-            {
-                return Utils.ConvertArrayToCollection(Universe);
-            }
-        }
-
-        /// <summary>
-        /// The universe of the automaton represented as a 2-D grid.
-        /// </summary>
-        public int[,] Universe {
-            get
-            {
-                return _universe.Cells;
-            }
-        }
-
-        /// <summary>
-        /// A string representation of the universe.
-        /// </summary>
-        public string UniverseString
-        {
-            get
-            {
-                return _universe.GetCellsAsString();
-            }
-        }
-
         /// <summary>
         /// The universe grid.
         /// </summary>
@@ -105,6 +61,41 @@ namespace LifeSharp.Model
                     break;
                 default:
                     throw new ArgumentException();
+            }
+        }
+
+        /// <summary>
+        /// The age of the automaton, i.e., the number of past evolutions.
+        /// </summary>
+        public int Age { get; private set; }
+
+        /// <summary>
+        /// The universe of the automaton represented as a 2-D grid.
+        /// </summary>
+        public int[,] Universe {
+            get
+            {
+                return _universe.Cells;
+            }
+        }
+
+        /// <summary>
+        /// A string representation of the universe.
+        /// </summary>
+        public string UniverseString
+        {
+            get
+            {
+                return _universe.GetCellsAsString();
+            }
+        }
+
+        // TODO: Maybe use ObservableCollection from the start instead of int[,]
+        public ObservableCollection<ObservableCollection<int>> UniverseCollection
+        {
+            get
+            {
+                return Utils.ConvertArrayToCollection(Universe);
             }
         }
 

@@ -1,12 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LifeSharp.Model
 {
+    /// <summary>
+    /// The available computation methods.
+    /// </summary>
+    public enum ComputeMethod { Naive, Convolution }
+
     /// <summary>
     /// The base abstract class for a grid of cells in a cellular automaton.
     /// </summary>
@@ -16,26 +16,6 @@ namespace LifeSharp.Model
         /// The boundary conditions for the grid.
         /// </summary>
         protected readonly BoundaryConditions _boundaryConditions;
-
-        /// <summary>
-        /// The number of live neighbours of each cell.
-        /// </summary>
-        public int[,] LiveNeighbourCounts { get; protected set; }
-
-        /// <summary>
-        /// The height of the grid, i.e., the number of rows.
-        /// </summary>
-        public int Height { get; }
-
-        /// <summary>
-        /// The width of the grid, i.e. the number of columns.
-        /// </summary>
-        public int Width { get; }
-
-        /// <summary>
-        /// The cells in the grid, represented by 0s and 1s.
-        /// </summary>
-        public int[,] Cells { get; }
 
         /// <summary>
         /// Constructs a grid of a given size, with all cells initialized to zero by default.
@@ -86,6 +66,26 @@ namespace LifeSharp.Model
         }
 
         /// <summary>
+        /// The height of the grid, i.e., the number of rows.
+        /// </summary>
+        public int Height { get; }
+
+        /// <summary>
+        /// The width of the grid, i.e. the number of columns.
+        /// </summary>
+        public int Width { get; }
+
+        /// <summary>
+        /// The cells in the grid, represented by 0s and 1s.
+        /// </summary>
+        public int[,] Cells { get; }
+
+        /// <summary>
+        /// The number of live neighbours of each cell.
+        /// </summary>
+        public int[,] LiveNeighbourCounts { get; protected set; }
+
+        /// <summary>
         /// Returns a string representation of the grid.
         /// </summary>
         /// <returns>A string representation of the grid.</returns>
@@ -104,11 +104,6 @@ namespace LifeSharp.Model
 
             return str;
         }
-
-        /// <summary>
-        /// Updates the live neighbour counts for all cells.
-        /// </summary>
-        protected abstract void UpdateNeighbourCounts();
 
         /// <summary>
         /// Performs a single evolution of the grid.
@@ -145,5 +140,10 @@ namespace LifeSharp.Model
             }
             UpdateNeighbourCounts();
         }
+
+        /// <summary>
+        /// Updates the live neighbour counts for all cells.
+        /// </summary>
+        protected abstract void UpdateNeighbourCounts();
     }
 }

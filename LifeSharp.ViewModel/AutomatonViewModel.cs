@@ -1,12 +1,7 @@
 ﻿using LifeSharp.Model;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using System.Timers;
 using System.Windows.Input;
 
 namespace LifeSharp.ViewModel
@@ -16,12 +11,64 @@ namespace LifeSharp.ViewModel
     /// </summary>
     public class AutomatonViewModel : ObservableObject
     {
-        private int[,] _universe;
-        private string _universeString;
-        private ObservableCollection<ObservableCollection<int>> _universeCollection;
         private readonly Automaton _automaton;
         private int _numEvolutions;
         private int _delayBetweenEvolutions;
+        private int[,] _universe;
+        private string _universeString;
+        private ObservableCollection<ObservableCollection<int>> _universeCollection;
+
+        public AutomatonViewModel()
+        {
+            // For debugging only; should be specified by user (or default to zero)
+            int[,] seed = 
+            {
+                { 0, 1, 0, 0, 0, 0, 0, 0, 0, 0 },
+                { 0, 0, 1, 0, 0, 0, 0, 0, 0, 0 },
+                { 1, 1, 1, 0, 0, 0, 0, 0, 0, 0 },
+                { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+                { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+                { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+                { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+                { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+                { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+                { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }
+            };
+
+            _automaton = new Automaton(seed);
+            _universe = _automaton.Universe;
+            _universeString = _automaton.UniverseString;
+            _universeCollection = _automaton.UniverseCollection;
+            _numEvolutions = 1;
+        }
+
+        public int NumEvolutions
+        {
+            get
+            {
+                return _numEvolutions;
+            }
+            set
+            {
+                if (value < 0) throw new ArgumentOutOfRangeException();
+                _numEvolutions = value;
+                RaisePropertyChangedEvent("NumEvolutions");
+            }
+        }
+
+        public int DelayBetweenEvolutions
+        {
+            get
+            {
+                return _delayBetweenEvolutions;
+            }
+            set
+            {
+                if (value < 0) throw new ArgumentOutOfRangeException();
+                _delayBetweenEvolutions = value;
+                RaisePropertyChangedEvent("DelayBetweenEvolutions");
+            }
+        }
 
         public int[,] Universe
         {
@@ -63,72 +110,12 @@ namespace LifeSharp.ViewModel
             }
         }
 
-        public int NumEvolutions
-        {
-            get
-            {
-                return _numEvolutions;
-            }
-            set
-            {
-                if (value < 0) throw new ArgumentOutOfRangeException();
-                _numEvolutions = value;
-                RaisePropertyChangedEvent("NumEvolutions");
-            }
-        }
-
-        public int DelayBetweenEvolutions
-        {
-            get
-            {
-                return _delayBetweenEvolutions;
-            }
-            set
-            {
-                if (value < 0) throw new ArgumentOutOfRangeException();
-                _delayBetweenEvolutions = value;
-                RaisePropertyChangedEvent("DelayBetweenEvolutions");
-            }
-        }
-
         public ICommand EvolveCommand
         {
             get
             {
                 return new DelegateCommand(Evolve);
             }
-        }
-
-        public AutomatonViewModel()
-        {
-            // For debugging only; should be specified by user (or default to zero)
-            int[,] seed = 
-            {
-                { 0, 1, 0, 0, 0, 0, 0, 0, 0, 0 },
-                { 0, 0, 1, 0, 0, 0, 0, 0, 0, 0 },
-                { 1, 1, 1, 0, 0, 0, 0, 0, 0, 0 },
-                { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-                { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-                { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-                { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-                { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-                { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-                { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }
-            };
-
-            _automaton = new Automaton(seed);
-            _universe = _automaton.Universe;
-            _universeString = _automaton.UniverseString;
-            _universeCollection = _automaton.UniverseCollection;
-            _numEvolutions = 1;
-        }
-
-        private void EvolveOnce()
-        {
-            _automaton.Evolve();
-            Universe = _automaton.Universe;
-            UniverseString = _automaton.UniverseString;
-            UniverseCollection = _automaton.UniverseCollection;
         }
 
         private async Task<bool> ExecuteWithDelay(Action action, int delay)
@@ -145,6 +132,14 @@ namespace LifeSharp.ViewModel
             {
                 await ExecuteWithDelay(EvolveOnce, _delayBetweenEvolutions);
             }
+        }
+
+        private void EvolveOnce()
+        {
+            _automaton.Evolve();
+            Universe = _automaton.Universe;
+            UniverseString = _automaton.UniverseString;
+            UniverseCollection = _automaton.UniverseCollection;
         }
     }
 }

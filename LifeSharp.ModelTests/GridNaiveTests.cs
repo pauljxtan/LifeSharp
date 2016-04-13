@@ -1,10 +1,4 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using LifeSharp.Model;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LifeSharp.Model.Tests
 {
@@ -45,11 +39,6 @@ namespace LifeSharp.Model.Tests
             };
 
             int[,] actualLiveNeighbourCounts = grid.LiveNeighbourCounts;
-
-            Console.WriteLine(grid.LiveNeighbourCounts[0, 0] + " " + grid.LiveNeighbourCounts[0, 1] + " " + grid.LiveNeighbourCounts[0, 2] + " " + grid.LiveNeighbourCounts[0, 3]);
-            Console.WriteLine(grid.LiveNeighbourCounts[1,0] + " " + grid.LiveNeighbourCounts[1,1] + " " + grid.LiveNeighbourCounts[1,2] + " " + grid.LiveNeighbourCounts[1, 3]);
-            Console.WriteLine(grid.LiveNeighbourCounts[2,0] + " " + grid.LiveNeighbourCounts[2,1] + " " + grid.LiveNeighbourCounts[2,2] + " " + grid.LiveNeighbourCounts[2, 3]);
-            Console.WriteLine(grid.LiveNeighbourCounts[3,0] + " " + grid.LiveNeighbourCounts[3,1] + " " + grid.LiveNeighbourCounts[3,2] + " " + grid.LiveNeighbourCounts[3, 3]);
 
             CollectionAssert.AreEqual(expectedLiveNeighbourCounts, actualLiveNeighbourCounts);
         }
