@@ -3,9 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:ViewModel="clr-namespace:LifeSharp.ViewModel;assembly=LifeSharp.ViewModel"
-             mc:Ignorable="d"
-             d:DesignHeight="640" d:DesignWidth="320">
+             xmlns:ViewModel="clr-namespace:LifeSharp.ViewModel;assembly=LifeSharp.ViewModel">
 
     <UserControl.DataContext>
         <ViewModel:AutomatonViewModel></ViewModel:AutomatonViewModel>
@@ -38,7 +36,7 @@
 
     <StackPanel>
         <UniformGrid>
-            <ItemsControl ItemsSource="{Binding UniverseCollection}"  ItemTemplate="{DynamicResource GridTemplateRow}"></ItemsControl>
+            <ItemsControl ItemsSource="{Binding UniverseCollection}"  ItemTemplate="{DynamicResource GridTemplateRow}"/>
         </UniformGrid>
         <TextBlock Text="{Binding UniverseString}" Margin="5"></TextBlock>
         <TextBlock Text="Number of evolutions:"></TextBlock>
@@ -46,6 +44,6 @@
         <TextBlock Text="Delay between evolutions [milliseconds] (doesn't include computation time):"></TextBlock>
         <TextBox Text="{Binding DelayBetweenEvolutions, UpdateSourceTrigger=PropertyChanged}" Margin="5"></TextBox>
         <Button Command="{Binding EvolveCommand}" Margin="5">Evolve</Button>
-        <Button>Reset</Button>
+        <Button Margin="5">Reset</Button>
     </StackPanel>
 </UserControl>

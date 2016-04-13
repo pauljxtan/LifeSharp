@@ -6,7 +6,7 @@
         xmlns:ViewModel="clr-namespace:LifeSharp.ViewModel;assembly=LifeSharp.ViewModel"
         xmlns:View="clr-namespace:LifeSharp.View"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="MainWindow" Height="480" Width="320">
     <Window.DataContext>
         <ViewModel:AutomatonViewModel></ViewModel:AutomatonViewModel>
     </Window.DataContext>

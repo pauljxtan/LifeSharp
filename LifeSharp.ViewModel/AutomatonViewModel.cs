@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -130,18 +131,19 @@ namespace LifeSharp.ViewModel
             UniverseCollection = _automaton.UniverseCollection;
         }
 
-        private async void ExecuteWithDelay(Action action, int delay)
+        private async Task<bool> ExecuteWithDelay(Action action, int delay)
         {
             await Task.Delay(delay);
             action();
+            return true;
         }
 
-        private void Evolve()
+        private async void Evolve()
         {
             EvolveOnce();
             for (int i = 1; i < _numEvolutions; i++)
             {
-                ExecuteWithDelay(EvolveOnce, _delayBetweenEvolutions);
+                await ExecuteWithDelay(EvolveOnce, _delayBetweenEvolutions);
             }
         }
     }
