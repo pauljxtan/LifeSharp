@@ -55,5 +55,22 @@ namespace LifeSharp.Model
 
             return list;
         }
+
+        public static int[,] GetArrayDeepCopy(int[,] array)
+        {
+            int height = array.GetLength(0);
+            int width = array.GetLength(1);
+            var arrayCopy = new int[height, width];
+
+            for (int row = 0; row < height; row++)
+            {
+                for (int col = 0; col < width; col++)
+                {
+                    arrayCopy[row, col] = array[row, col];
+                }
+            }
+
+            return arrayCopy;
+        }
     }
 }
