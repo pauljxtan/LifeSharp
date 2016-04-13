@@ -18,6 +18,11 @@ namespace LifeSharp.Model
         protected readonly BoundaryConditions _boundaryConditions;
 
         /// <summary>
+        /// The number of live neighbours of each cell.
+        /// </summary>
+        public int[,] LiveNeighbourCounts { get; protected set; }
+
+        /// <summary>
         /// The height of the grid, i.e., the number of rows.
         /// </summary>
         public int Height { get; }
@@ -101,8 +106,44 @@ namespace LifeSharp.Model
         }
 
         /// <summary>
+        /// Updates the live neighbour counts for all cells.
+        /// </summary>
+        protected abstract void UpdateNeighbourCounts();
+
+        /// <summary>
         /// Performs a single evolution of the grid.
         /// </summary>
-        public abstract void Evolve();
+        public void Evolve()
+        {
+            int liveNeighbourCount;
+
+            for (int row = 0; row < Height; row++)
+            {
+                for (int col = 0; col < Width; col++)
+                {
+                    liveNeighbourCount = LiveNeighbourCounts[row, col];
+                    // Cell is alive
+                    if (Cells[row, col] == 1)
+                    {
+                        // Less than live 2 neighbours: die by under-population
+                        // More than live 3 neighbours: die by over-population
+                        if (liveNeighbourCount < 2 || liveNeighbourCount > 3) {
+                            Cells[row, col] = 0;
+                        }
+                        // 2 or 3 live neighbours: live on
+                    }
+                    // Cell is dead
+                    else
+                    {
+                        // 3 live neighbours: come alive by reproduction
+                        if (liveNeighbourCount == 3)
+                        {
+                            Cells[row, col] = 1;
+                        }
+                    }
+                }
+            }
+            UpdateNeighbourCounts();
+        }
     }
 }
