@@ -13,6 +13,11 @@ namespace LifeSharp.Model
     public abstract class Grid
     {
         /// <summary>
+        /// The boundary conditions for the grid.
+        /// </summary>
+        protected readonly BoundaryConditions _boundaryConditions;
+
+        /// <summary>
         /// The height of the grid, i.e., the number of rows.
         /// </summary>
         public int Height { get; }
@@ -33,11 +38,13 @@ namespace LifeSharp.Model
         /// <param name="height">The height (i.e. number of rows) of the grid.</param>
         /// <param name="width">The width (i.e. number of rows) of the grid.</param>
         /// <param name="randomize">Whether to randomize the initial seed.</param>
-        public Grid(int height, int width, bool randomize)
+        /// <param name="boundaryConditions">The boundary conditions to be applied.</param>
+        public Grid(int height, int width, bool randomize, BoundaryConditions boundaryConditions)
         {
             Height = height;
             Width = width;
             Cells = new int[height, width];
+            _boundaryConditions = boundaryConditions;
 
             if (randomize)
             {
@@ -57,7 +64,8 @@ namespace LifeSharp.Model
         /// Constructs a grid with an initial configuration.
         /// </summary>
         /// <param name="cells">The initial configuration of the grid.</param>
-        public Grid(int[,] cells)
+        /// <param name="boundaryConditions">The boundary conditions to be applied.</param>
+        public Grid(int[,] cells, BoundaryConditions boundaryConditions)
         {
             Height = cells.GetLength(0);
             Width = cells.GetLength(1);
@@ -69,6 +77,7 @@ namespace LifeSharp.Model
                     Cells[row, col] = cells[row, col];
                 }
             }
+            _boundaryConditions = boundaryConditions;
         }
 
         /// <summary>

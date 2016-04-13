@@ -40,7 +40,7 @@ namespace LifeSharp.Model.Tests
                 { 0, 0, 0, 0 },
             };
 
-            var grid = new GridConvolution(seed);
+            var grid = new GridConvolution(seed, BoundaryConditions.Zeros);
 
             int[,] expectedCells =
             {
@@ -87,7 +87,7 @@ namespace LifeSharp.Model.Tests
                 { 0, 1, 0, 0 },
             };
 
-            var grid = new GridConvolution(cells);
+            var grid = new GridConvolution(cells, BoundaryConditions.Zeros);
             grid.Evolve();
 
             CollectionAssert.AreEqual(expected, grid.Cells);

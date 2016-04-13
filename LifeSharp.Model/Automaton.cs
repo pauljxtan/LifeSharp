@@ -5,6 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+// TODO: Set convolution boundary conditions in constructor
+// TODO: Choose grid type (or only use convolution)?
+
 namespace LifeSharp.Model
 {
     /// <summary>
@@ -13,14 +16,14 @@ namespace LifeSharp.Model
     public class Automaton
     {
         /// <summary>
+        /// Computation methods.
+        /// </summary>
+        public enum ComputeMethod { Naive, Convolution }
+
+        /// <summary>
         /// The age of the automaton, i.e., the number of past evolutions.
         /// </summary>
         public int Age { get; private set; }
-
-        /// <summary>
-        /// The universe of the automaton represented as a 2-D grid.
-        /// </summary>
-        public int[,] Universe { get; private set; }
 
         // TODO: Maybe use ObservableCollection from the start instead of int[,]
         public ObservableCollection<ObservableCollection<int>> UniverseCollection
@@ -32,20 +35,30 @@ namespace LifeSharp.Model
         }
 
         /// <summary>
+        /// The universe of the automaton represented as a 2-D grid.
+        /// </summary>
+        public int[,] Universe {
+            get
+            {
+                return _universe.Cells;
+            }
+        }
+
+        /// <summary>
         /// A string representation of the universe.
         /// </summary>
         public string UniverseString
         {
             get
             {
-                return _universeGrid.GetCellsAsString();
+                return _universe.GetCellsAsString();
             }
         }
 
         /// <summary>
-        /// An intermediate representation of the universe grid for encapsulation purposes.
+        /// The universe grid.
         /// </summary>
-        private Grid _universeGrid;
+        private Grid _universe;
 
         /// <summary>
         /// Constructs an Automaton of a given size, with all cells initialized to zero by default.
@@ -53,22 +66,46 @@ namespace LifeSharp.Model
         /// <param name="height">The height (i.e. number of rows) of the grid.</param>
         /// <param name="width">The width (i.e. number of rows) of the grid.</param>
         /// <param name="randomize">Whether to randomize the initial seed.</param>
-        public Automaton(int height, int width, bool randomize = false)
+        /// <param name="boundaryConditions">The boundary conditions to be applied.</param>
+        /// <param name="computeMethod">The computation method to be used.</param>
+        public Automaton(int height, int width, bool randomize = false, BoundaryConditions boundaryConditions = BoundaryConditions.Zeros,
+                         ComputeMethod computeMethod = ComputeMethod.Convolution)
         {
             Age = 0;
-            _universeGrid = new GridConvolution(width, height, randomize);
-            Universe = _universeGrid.Cells;
+            switch (computeMethod) {
+                case ComputeMethod.Naive:
+                    //_universe = new GridNaive(height, width, randomize, boundaryConditions);
+                    break;
+                    throw new NotImplementedException();
+                case ComputeMethod.Convolution:
+                    _universe = new GridConvolution(height, width, randomize, boundaryConditions);
+                    break;
+                default:
+                    throw new ArgumentException();
+            }
         }
 
         /// <summary>
         /// Constructs an Automaton with a given seed.
         /// </summary>
         /// <param name="cells">The seed for the automaton.</param>
-        public Automaton(int[,] cells)
+        /// <param name="boundaryConditions">The boundary conditions to be applied.</param>
+        /// <param name="computeMethod">The computation method to be used.</param>
+        public Automaton(int[,] cells, BoundaryConditions boundaryConditions = BoundaryConditions.Zeros,
+            ComputeMethod computeMethod = ComputeMethod.Convolution)
         {
             Age = 0;
-            _universeGrid = new GridConvolution(cells);
-            Universe = _universeGrid.Cells;
+            switch (computeMethod) {
+                case ComputeMethod.Naive:
+                    //_universe = new GridNaive(height, width, randomize, boundaryConditions);
+                    break;
+                    throw new NotImplementedException();
+                case ComputeMethod.Convolution:
+                    _universe = new GridConvolution(cells, boundaryConditions);
+                    break;
+                default:
+                    throw new ArgumentException();
+            }
         }
 
         /// <summary>
@@ -76,8 +113,7 @@ namespace LifeSharp.Model
         /// </summary>
         public void Evolve()
         {
-            _universeGrid.Evolve();
-            Universe = _universeGrid.Cells;
+            _universe.Evolve();
             Age++;
         }
     }
