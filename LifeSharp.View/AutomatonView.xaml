@@ -35,11 +35,21 @@
             <ItemsControl ItemsSource="{Binding UniverseCollection}"  ItemTemplate="{DynamicResource GridTemplateRow}"/>
         </UniformGrid>
         <!--<TextBlock Text="{Binding UniverseString}" Margin="5"></TextBlock>-->
-        <TextBlock Text="Number of evolutions:"></TextBlock>
-        <TextBox Text="{Binding NumEvolutionsToDo, UpdateSourceTrigger=PropertyChanged}" Margin="5"></TextBox>
-        <TextBlock Text="Delay between evolutions [milliseconds] (doesn't include computation time):"></TextBlock>
-        <TextBox Text="{Binding DelayBetweenEvolutions, UpdateSourceTrigger=PropertyChanged}" Margin="5"></TextBox>
-        <Button Command="{Binding EvolveCommand}" Margin="5">Evolve</Button>
-        <Button Command="{Binding ResetCommand}" Margin="5">Reset</Button>
+        <DockPanel>
+            <TextBlock Text="Age:" DockPanel.Dock="Left" Margin="5"></TextBlock>
+            <TextBlock Text="{Binding Age}" Margin="5"></TextBlock>
+        </DockPanel>
+        <DockPanel>
+            <TextBlock Text="Number of evolutions:" DockPanel.Dock="Left" Margin="5"></TextBlock>
+            <TextBox Text="{Binding NumEvolutionsToDo, UpdateSourceTrigger=PropertyChanged}" Margin="5"></TextBox>
+        </DockPanel>
+        <DockPanel>
+            <TextBlock Text="Delay between evolutions [milliseconds]:" DockPanel.Dock="Left" Margin="5"></TextBlock>
+            <TextBox Text="{Binding DelayBetweenEvolutions, UpdateSourceTrigger=PropertyChanged}" Margin="5"></TextBox>
+        </DockPanel>
+        <DockPanel>
+            <Button Command="{Binding ResetCommand}" DockPanel.Dock="Left" Margin="5">Reset</Button>
+            <Button Command="{Binding EvolveCommand}" DockPanel.Dock="Right" Margin="5">Evolve</Button>
+        </DockPanel>
     </StackPanel>
 </UserControl>

@@ -36,9 +36,24 @@ namespace LifeSharp.ViewModel
             };
 
             _automaton = new Automaton(seed);
+            Age = _automaton.Age;
             UniverseString = _automaton.UniverseString;
             UniverseCollection = _automaton.UniverseCollection;
             NumEvolutionsToDo = 1;
+        }
+
+        public int Age
+        {
+            get
+            {
+                return _age;
+            }
+            set
+            {
+                if (value < 0) throw new ArgumentOutOfRangeException();
+                _age = value;
+                RaisePropertyChangedEvent("Age");
+            }
         }
 
         public int NumEvolutionsToDo
@@ -130,6 +145,7 @@ namespace LifeSharp.ViewModel
         private void EvolveOnce()
         {
             _automaton.Evolve();
+            Age++;
             UniverseString = _automaton.UniverseString;
             UniverseCollection = _automaton.UniverseCollection;
         }
@@ -137,6 +153,7 @@ namespace LifeSharp.ViewModel
         private void Reset()
         {
             _automaton.Reset();
+            Age = 0;
             UniverseString = _automaton.UniverseString;
             UniverseCollection = _automaton.UniverseCollection;
         }
