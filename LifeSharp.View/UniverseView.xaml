@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="LifeSharp.View.AutomatonView"
+﻿<UserControl x:Class="LifeSharp.View.UniverseView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -6,7 +6,7 @@
              xmlns:ViewModel="clr-namespace:LifeSharp.ViewModel;assembly=LifeSharp.ViewModel">
 
     <UserControl.DataContext>
-        <ViewModel:AutomatonViewModel></ViewModel:AutomatonViewModel>
+        <ViewModel:UniverseViewModel></ViewModel:UniverseViewModel>
     </UserControl.DataContext>
     
     <UserControl.Resources>

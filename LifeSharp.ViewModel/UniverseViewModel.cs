@@ -9,16 +9,28 @@ namespace LifeSharp.ViewModel
     /// <summary>
     /// Encapsulates an Automaton object and exposes the universe for the View to bind to.
     /// </summary>
-    public class AutomatonViewModel : ObservableObject
+    public class UniverseViewModel : ObservableObject
     {
+        /*
+        private static UniverseViewModel _instance = new UniverseViewModel();
+        public static UniverseViewModel Instance
+        {
+            get
+            {
+                return _instance;
+            }
+        }
+        */
+
         private readonly Automaton _automaton;
         private int _age;
         private int _numEvolutionsToDo;
         private int _delayBetweenEvolutions;
         private string _universeString;
+
         private ObservableCollection<ObservableCollection<int>> _universeCollection;
 
-        public AutomatonViewModel()
+        public UniverseViewModel()
         {
             // For debugging only; should be specified by user (or default to zero)
             int[,] seed = 
