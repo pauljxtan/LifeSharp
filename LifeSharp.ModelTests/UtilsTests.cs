@@ -50,15 +50,22 @@ namespace LifeSharp.Model.Tests
 
             var actual = Utils.ConvertArrayToCollection(array);
 
-            Console.WriteLine(expected[0][0] + " " + expected[0][1] + " " + expected[0][2] + " " +
-                              expected[1][0] + " " + expected[1][1] + " " + expected[1][2] + " " +
-                              expected[2][0] + " " + expected[2][1] + " " + expected[2][2]);
-            Console.WriteLine(actual[0][0] + " " + actual[0][1] + " " + actual[0][2] + " " +
-                              actual[1][0] + " " + actual[1][1] + " " + actual[1][2] + " " +
-                              actual[2][0] + " " + actual[2][1] + " " + actual[2][2]);
+            bool elemsEqual = true;
 
-            // TODO: Why is this failing?
-            CollectionAssert.AreEqual(expected, actual);
+            for (int row = 0; row < 3; row++)
+            {
+                for (int col = 0; col < 3; col++)
+                {
+                    if (expected[row][col] != actual[row][col])
+                    {
+                        elemsEqual = false;
+                        break;
+                    }
+
+                }
+            }
+
+            Assert.IsTrue(elemsEqual);
         }
     }
 }
