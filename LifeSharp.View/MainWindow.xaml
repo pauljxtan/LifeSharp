@@ -6,9 +6,12 @@
         xmlns:ViewModel="clr-namespace:LifeSharp.ViewModel;assembly=LifeSharp.ViewModel"
         xmlns:View="clr-namespace:LifeSharp.View"
         mc:Ignorable="d"
-        Title="MainWindow" Height="480" Width="320">
+        Title="MainWindow" Height="640" Width="640">
     <Window.DataContext>
-        <ViewModel:AutomatonViewModel></ViewModel:AutomatonViewModel>
+        <ViewModel:UniverseViewModel></ViewModel:UniverseViewModel>
     </Window.DataContext>
-    <View:AutomatonView></View:AutomatonView>
+    <StackPanel>
+        <View:UniverseView></View:UniverseView>
+        <View:LoadFileView></View:LoadFileView>
+    </StackPanel>
 </Window>

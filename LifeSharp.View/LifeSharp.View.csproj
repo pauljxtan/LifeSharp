@@ -48,7 +48,11 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
-    <Page Include="AutomatonView.xaml">
+    <Page Include="LoadFileView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UniverseView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -56,8 +60,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Compile Include="AutomatonView.xaml.cs">
-      <DependentUpon>AutomatonView.xaml</DependentUpon>
+    <Compile Include="LoadFileView.xaml.cs">
+      <DependentUpon>LoadFileView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UniverseView.xaml.cs">
+      <DependentUpon>UniverseView.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>

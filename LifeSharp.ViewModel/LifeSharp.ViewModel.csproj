@@ -42,10 +42,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CreationViewModel.cs" />
     <Compile Include="DelegateCommand.cs" />
     <Compile Include="IntToColorConverter.cs" />
+    <Compile Include="LoadFileViewModel.cs" />
     <Compile Include="ObservableObject.cs" />
-    <Compile Include="AutomatonViewModel.cs" />
+    <Compile Include="UniverseViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace LifeSharp.View
 {
     /// <summary>
-    /// Interaction logic for AutomatonView.xaml
+    /// Interaction logic for LoadFileView.xaml
     /// </summary>
-    public partial class AutomatonView : UserControl
+    public partial class LoadFileView : UserControl
     {
-        public AutomatonView()
+        public LoadFileView()
         {
             InitializeComponent();
         }
