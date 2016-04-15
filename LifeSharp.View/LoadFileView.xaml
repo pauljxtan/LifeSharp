@@ -5,18 +5,17 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:LifeSharp.View"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300"
              xmlns:ViewModel="clr-namespace:LifeSharp.ViewModel;assembly=LifeSharp.ViewModel">
 
     <UserControl.DataContext>
         <ViewModel:LoadFileViewModel></ViewModel:LoadFileViewModel>
     </UserControl.DataContext>
 
-    <StackPanel Orientation="Vertical">
-        <StackPanel Orientation="Horizontal">
-            <TextBlock Margin="5">File path:</TextBlock>
+    <StackPanel Orientation="Vertical" Margin="5">
+        <DockPanel>
+            <TextBlock Text="File path" DockPanel.Dock="Left" Margin="5"></TextBlock>
             <TextBlock Text="{Binding FilePath}" Margin="5"></TextBlock>
-        </StackPanel>
+        </DockPanel>
         <Button Command="{Binding ShowDialogCommand}" Margin="5">Load from file</Button>
     </StackPanel>
 </UserControl>

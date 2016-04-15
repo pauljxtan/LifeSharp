@@ -31,25 +31,26 @@
     </UserControl.Resources>
 
     <StackPanel>
-        <UniformGrid>
-            <ItemsControl ItemsSource="{Binding UniverseCollection}"  ItemTemplate="{DynamicResource GridTemplateRow}"/>
-        </UniformGrid>
-        <!--<TextBlock Text="{Binding UniverseString}" Margin="5"></TextBlock>-->
+        <Border BorderBrush="Black" BorderThickness="1" Margin="5">
+            <UniformGrid>
+                <ItemsControl ItemsSource="{Binding Instance.UniverseCollection}"  ItemTemplate="{DynamicResource GridTemplateRow}"/>
+            </UniformGrid>
+        </Border>
         <DockPanel>
             <TextBlock Text="Age:" DockPanel.Dock="Left" Margin="5"></TextBlock>
-            <TextBlock Text="{Binding Age}" Margin="5"></TextBlock>
+            <TextBlock Text="{Binding Instance.Age}" Margin="5"></TextBlock>
         </DockPanel>
         <DockPanel>
             <TextBlock Text="Number of evolutions:" DockPanel.Dock="Left" Margin="5"></TextBlock>
-            <TextBox Text="{Binding NumEvolutionsToDo, UpdateSourceTrigger=PropertyChanged}" Margin="5"></TextBox>
+            <TextBox Text="{Binding Instance.NumEvolutionsToDo, UpdateSourceTrigger=PropertyChanged}" Margin="5"></TextBox>
         </DockPanel>
         <DockPanel>
             <TextBlock Text="Delay between evolutions [milliseconds]:" DockPanel.Dock="Left" Margin="5"></TextBlock>
-            <TextBox Text="{Binding DelayBetweenEvolutions, UpdateSourceTrigger=PropertyChanged}" Margin="5"></TextBox>
+            <TextBox Text="{Binding Instance.DelayBetweenEvolutions, UpdateSourceTrigger=PropertyChanged}" Margin="5"></TextBox>
         </DockPanel>
         <DockPanel>
-            <Button Command="{Binding ResetCommand}" DockPanel.Dock="Left" Margin="5">Reset</Button>
-            <Button Command="{Binding EvolveCommand}" DockPanel.Dock="Right" Margin="5">Evolve</Button>
+            <Button Command="{Binding Instance.ResetCommand}" DockPanel.Dock="Left" Margin="5">Reset</Button>
+            <Button Command="{Binding Instance.EvolveCommand}" DockPanel.Dock="Right" Margin="5">Evolve</Button>
         </DockPanel>
     </StackPanel>
 </UserControl>

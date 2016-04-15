@@ -11,22 +11,11 @@ namespace LifeSharp.ViewModel
     /// </summary>
     public class UniverseViewModel : ObservableObject
     {
-        /*
         private static UniverseViewModel _instance = new UniverseViewModel();
-        public static UniverseViewModel Instance
-        {
-            get
-            {
-                return _instance;
-            }
-        }
-        */
-
-        private readonly Automaton _automaton;
+        private Automaton _automaton;
         private int _age;
         private int _numEvolutionsToDo;
         private int _delayBetweenEvolutions;
-        private string _universeString;
 
         private ObservableCollection<ObservableCollection<int>> _universeCollection;
 
@@ -49,9 +38,31 @@ namespace LifeSharp.ViewModel
 
             _automaton = new Automaton(seed);
             Age = _automaton.Age;
-            UniverseString = _automaton.UniverseString;
             UniverseCollection = _automaton.UniverseCollection;
             NumEvolutionsToDo = 1;
+        }
+
+        public static UniverseViewModel Instance
+        {
+            get
+            {
+                return _instance;
+            }
+        }
+
+        public Automaton Automaton
+        {
+            get
+            {
+                return _automaton;
+            }
+            set
+            {
+                _automaton = value;
+                Age = 0;
+                UniverseCollection = _automaton.UniverseCollection;
+                RaisePropertyChangedEvent("Automaton");
+            }
         }
 
         public int Age
@@ -93,19 +104,6 @@ namespace LifeSharp.ViewModel
                 if (value < 0) throw new ArgumentOutOfRangeException();
                 _delayBetweenEvolutions = value;
                 RaisePropertyChangedEvent("DelayBetweenEvolutions");
-            }
-        }
-
-        public string UniverseString
-        {
-            get
-            {
-                return _universeString;
-            }
-            private set
-            {
-                _universeString = value;
-                RaisePropertyChangedEvent("UniverseString");
             }
         }
 
@@ -158,7 +156,6 @@ namespace LifeSharp.ViewModel
         {
             _automaton.Evolve();
             Age++;
-            UniverseString = _automaton.UniverseString;
             UniverseCollection = _automaton.UniverseCollection;
         }
 
@@ -166,7 +163,6 @@ namespace LifeSharp.ViewModel
         {
             _automaton.Reset();
             Age = 0;
-            UniverseString = _automaton.UniverseString;
             UniverseCollection = _automaton.UniverseCollection;
         }
     }

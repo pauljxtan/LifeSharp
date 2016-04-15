@@ -13,9 +13,9 @@ namespace LifeSharp.ViewModel
     public class LoadFileViewModel : ObservableObject
     {
         private OpenFileDialog _fileDialog;
-        //private bool? _fileDialogResult;
         private string _filePath;
-
+        private int[,] _seed;
+        
         public LoadFileViewModel()
         {
             _fileDialog = new OpenFileDialog();
@@ -34,6 +34,20 @@ namespace LifeSharp.ViewModel
             }
         }
 
+        public int[,] Seed
+        {
+            get
+            {
+                return _seed;
+            }
+            set
+            {
+                _seed = value;
+                RaisePropertyChangedEvent("Seed");
+                UniverseViewModel.Instance.Automaton = new Automaton(_seed);
+            }
+        }
+
         public ICommand ShowDialogCommand
         {
             get
@@ -42,28 +56,12 @@ namespace LifeSharp.ViewModel
             }
         }
 
-        /*
-        public bool? FileDialogResult
-        {
-            get
-            {
-                return _fileDialogResult;
-            }
-            set
-            {
-                _fileDialogResult = value;
-                RaisePropertyChangedEvent("FileDialogResult");
-            }
-        }
-        */
-
         private void ShowDialog()
         {
             if (_fileDialog.ShowDialog() == true)
             {
                 FilePath = _fileDialog.FileName;
-                int [,] _seed = Utils.GetArrayFromFile(File.OpenText(_filePath), " ");
-                // Do more stuff...
+                Seed = Utils.GetArrayFromFile(File.OpenText(_filePath), " ");
             }
         }
     }
