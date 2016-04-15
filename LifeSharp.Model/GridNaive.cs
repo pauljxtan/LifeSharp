@@ -7,13 +7,11 @@ namespace LifeSharp.Model
         public GridNaive(int height, int width, bool randomize, BoundaryConditions boundaryConditions)
             : base(height, width, randomize, boundaryConditions)
         {
-            LiveNeighbourCounts = new int[height, width];
         }
 
         public GridNaive(int[,] cells, BoundaryConditions boundaryConditions)
             : base(cells, boundaryConditions)
         {
-            LiveNeighbourCounts = new int[Height, Width];
         }
 
         protected override void UpdateNeighbourCounts()

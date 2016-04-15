@@ -50,6 +50,8 @@ namespace LifeSharp.Model
                 }
             }
             _cellsInitial = Utils.GetArrayDeepCopy(Cells);
+
+            LiveNeighbourCounts = new int[height, width];
             UpdateNeighbourCounts();
         }
 
@@ -72,6 +74,8 @@ namespace LifeSharp.Model
                 }
             }
             _cellsInitial = Utils.GetArrayDeepCopy(Cells);
+
+            LiveNeighbourCounts = new int[Height, Width];
             UpdateNeighbourCounts();
         }
 
