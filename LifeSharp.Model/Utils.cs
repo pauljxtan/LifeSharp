@@ -19,25 +19,30 @@ namespace LifeSharp.Model
         /// <param name="width">The width of the array, i.e. the number of rows.</param>
         /// <param name="delimiter">The string used to delimit array elements.</param>
         /// <returns></returns>
-        public static int[,] GetArrayFromFile(TextReader textReader, int height, int width, String delimiter)
+        public static int[,] GetArrayFromFile(TextReader textReader, String delimiter)
         {
-            int[,] array = new int[height, width];
-
             using (var parser = new TextFieldParser(textReader))
             {
                 parser.SetDelimiters(delimiter);
+
+                // Get height and width
+                String[] elems = parser.ReadFields();
+                int height = int.Parse(elems[0]);
+                int width = int.Parse(elems[1]);
+                int[,] array = new int[height, width];
+                
                 int row = 0;
                 while (!parser.EndOfData)
                 {
-                    String[] elems = parser.ReadFields();
+                    elems = parser.ReadFields();
                     for (int col = 0; col < width; col++)
                     {
                         array[row, col] = int.Parse(elems[col]);
                     }
                     row++;
                 }
+                return array;
             }
-            return array;
         }
 
         public static ObservableCollection<ObservableCollection<int>> ConvertArrayToCollection(int[,] array)
