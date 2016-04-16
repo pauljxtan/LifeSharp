@@ -11,9 +11,9 @@
         <ViewModel:LoadFileViewModel></ViewModel:LoadFileViewModel>
     </UserControl.DataContext>
 
-    <StackPanel Orientation="Vertical" Margin="5">
+    <StackPanel Orientation="Vertical">
         <DockPanel>
-            <TextBlock Text="File path" DockPanel.Dock="Left" Margin="5"></TextBlock>
+            <TextBlock Text="File path:" DockPanel.Dock="Left" Margin="5"></TextBlock>
             <TextBlock Text="{Binding FilePath}" Margin="5"></TextBlock>
         </DockPanel>
         <Button Command="{Binding ShowDialogCommand}" Margin="5">Load from file</Button>

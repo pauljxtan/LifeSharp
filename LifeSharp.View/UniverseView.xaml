@@ -42,15 +42,15 @@
         </DockPanel>
         <DockPanel>
             <TextBlock Text="Number of evolutions:" DockPanel.Dock="Left" Margin="5"></TextBlock>
-            <TextBox Text="{Binding Instance.NumEvolutionsToDo, UpdateSourceTrigger=PropertyChanged}" Margin="5"></TextBox>
+            <TextBox Text="{Binding Instance.NumEvolutionsToDo, UpdateSourceTrigger=PropertyChanged}" IsEnabled="{Binding Instance.AutomatonIsSet}" Margin="5"></TextBox>
         </DockPanel>
         <DockPanel>
             <TextBlock Text="Delay between evolutions [milliseconds]:" DockPanel.Dock="Left" Margin="5"></TextBlock>
-            <TextBox Text="{Binding Instance.DelayBetweenEvolutions, UpdateSourceTrigger=PropertyChanged}" Margin="5"></TextBox>
+            <TextBox Text="{Binding Instance.DelayBetweenEvolutions, UpdateSourceTrigger=PropertyChanged}" IsEnabled="{Binding Instance.AutomatonIsSet}" Margin="5"></TextBox>
         </DockPanel>
         <DockPanel>
-            <Button Command="{Binding Instance.ResetCommand}" DockPanel.Dock="Left" Margin="5">Reset</Button>
-            <Button Command="{Binding Instance.EvolveCommand}" DockPanel.Dock="Right" Margin="5">Evolve</Button>
+            <Button Command="{Binding Instance.ResetCommand}" IsEnabled="{Binding Instance.AutomatonIsSet}" DockPanel.Dock="Left" Margin="5">Reset</Button>
+            <Button Command="{Binding Instance.EvolveCommand}" IsEnabled="{Binding Instance.AutomatonIsSet}" DockPanel.Dock="Right" Margin="5">Evolve</Button>
         </DockPanel>
     </StackPanel>
 </UserControl>

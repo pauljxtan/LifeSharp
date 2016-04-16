@@ -16,30 +16,26 @@ namespace LifeSharp.ViewModel
         private int _age;
         private int _numEvolutionsToDo;
         private int _delayBetweenEvolutions;
+        private bool _automatonIsSet;
 
         private ObservableCollection<ObservableCollection<int>> _universeCollection;
 
         public UniverseViewModel()
         {
-            // For debugging only; should be specified by user (or default to zero)
-            int[,] seed = 
-            {
-                { 0, 1, 0, 0, 0, 0, 0, 0, 0, 0 },
-                { 0, 0, 1, 0, 0, 0, 0, 0, 0, 0 },
-                { 1, 1, 1, 0, 0, 0, 0, 0, 0, 0 },
-                { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-                { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-                { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-                { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-                { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-                { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-                { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }
-            };
+            AutomatonIsSet = false;
+        }
 
-            _automaton = new Automaton(seed);
-            Age = _automaton.Age;
-            UniverseCollection = _automaton.UniverseCollection;
-            NumEvolutionsToDo = 1;
+        public bool AutomatonIsSet
+        {
+            get
+            {
+                return _automatonIsSet;
+            }
+            set
+            {
+                _automatonIsSet = value;
+                RaisePropertyChangedEvent("AutomatonIsSet");
+            }
         }
 
         public static UniverseViewModel Instance
@@ -59,7 +55,8 @@ namespace LifeSharp.ViewModel
             set
             {
                 _automaton = value;
-                Age = 0;
+                AutomatonIsSet = true;
+                Age = _automaton.Age;
                 UniverseCollection = _automaton.UniverseCollection;
                 RaisePropertyChangedEvent("Automaton");
             }
