@@ -42,7 +42,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CreationViewModel.cs" />
     <Compile Include="DelegateCommand.cs" />
     <Compile Include="IntToColorConverter.cs" />
     <Compile Include="LoadFileViewModel.cs" />
