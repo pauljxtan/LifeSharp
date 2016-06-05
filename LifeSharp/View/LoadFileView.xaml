@@ -5,11 +5,12 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:LifeSharp.View"
              mc:Ignorable="d" 
-             xmlns:ViewModel="clr-namespace:LifeSharp.ViewModel">
+             xmlns:vm="clr-namespace:LifeSharp.ViewModel"
+             DataContext="{Binding LoadFileViewBinding, Source={StaticResource Locator}}">
 
-    <UserControl.DataContext>
-        <ViewModel:LoadFileViewModel></ViewModel:LoadFileViewModel>
-    </UserControl.DataContext>
+    <UserControl.Resources>
+        <vm:ViewModelLocator x:Key="Locator" />
+    </UserControl.Resources>
 
     <StackPanel Orientation="Vertical">
         <DockPanel>

@@ -3,14 +3,13 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:ViewModel="clr-namespace:LifeSharp.ViewModel">
+             xmlns:vm="clr-namespace:LifeSharp.ViewModel"
+             DataContext="{Binding UniverseViewBinding, Source={StaticResource Locator}}">
 
-    <UserControl.DataContext>
-        <ViewModel:UniverseViewModel></ViewModel:UniverseViewModel>
-    </UserControl.DataContext>
-    
     <UserControl.Resources>
-        <ViewModel:IntToColorConverter x:Key="intToColorConverter"></ViewModel:IntToColorConverter>
+        <vm:ViewModelLocator x:Key="Locator" />
+
+        <vm:IntToColorConverter x:Key="intToColorConverter"></vm:IntToColorConverter>
         <DataTemplate x:Key="GridTemplateCol">
             <Rectangle Stretch="UniformToFill" Margin="0">
                 <Rectangle.Fill>
@@ -30,27 +29,34 @@
         </DataTemplate>
     </UserControl.Resources>
 
-    <StackPanel>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
         <Border BorderBrush="Black" BorderThickness="1" Margin="5">
             <UniformGrid>
-                <ItemsControl ItemsSource="{Binding Instance.UniverseCollection}"  ItemTemplate="{DynamicResource GridTemplateRow}"/>
+                <ItemsControl ItemsSource="{Binding Instance.UniverseCollection}" ItemTemplate="{DynamicResource GridTemplateRow}"/>
             </UniformGrid>
         </Border>
-        <DockPanel>
-            <TextBlock Text="Age:" DockPanel.Dock="Left" Margin="5"></TextBlock>
-            <TextBlock Text="{Binding Instance.Age}" Margin="5"></TextBlock>
-        </DockPanel>
-        <DockPanel>
-            <TextBlock Text="Number of evolutions:" DockPanel.Dock="Left" Margin="5"></TextBlock>
-            <TextBox Text="{Binding Instance.NumEvolutionsToDo, UpdateSourceTrigger=PropertyChanged}" IsEnabled="{Binding Instance.AutomatonIsSet}" Margin="5"></TextBox>
-        </DockPanel>
-        <DockPanel>
-            <TextBlock Text="Delay between evolutions [milliseconds]:" DockPanel.Dock="Left" Margin="5"></TextBlock>
-            <TextBox Text="{Binding Instance.DelayBetweenEvolutions, UpdateSourceTrigger=PropertyChanged}" IsEnabled="{Binding Instance.AutomatonIsSet}" Margin="5"></TextBox>
-        </DockPanel>
-        <DockPanel>
-            <Button Command="{Binding Instance.ResetCommand}" IsEnabled="{Binding Instance.AutomatonIsSet}" DockPanel.Dock="Left" Margin="5">Reset</Button>
-            <Button Command="{Binding Instance.EvolveCommand}" IsEnabled="{Binding Instance.AutomatonIsSet}" DockPanel.Dock="Right" Margin="5">Evolve</Button>
-        </DockPanel>
-    </StackPanel>
+        <StackPanel Grid.Column="1">
+            <DockPanel>
+                <TextBlock Text="Age:" DockPanel.Dock="Left" Margin="5"></TextBlock>
+                <TextBlock Text="{Binding Instance.Age}" Margin="5"></TextBlock>
+            </DockPanel>
+            <DockPanel>
+                <TextBlock Text="Number of evolutions:" DockPanel.Dock="Left" Margin="5"></TextBlock>
+                <TextBox Text="{Binding Instance.NumEvolutionsToDo, UpdateSourceTrigger=PropertyChanged}" IsEnabled="{Binding Instance.AutomatonIsSet}" Margin="5"></TextBox>
+            </DockPanel>
+            <DockPanel>
+                <TextBlock Text="Delay between evolutions [milliseconds]:" DockPanel.Dock="Left" Margin="5"></TextBlock>
+                <TextBox Text="{Binding Instance.DelayBetweenEvolutions, UpdateSourceTrigger=PropertyChanged}" IsEnabled="{Binding Instance.AutomatonIsSet}" Margin="5"></TextBox>
+            </DockPanel>
+            <DockPanel>
+                <Button Command="{Binding Instance.ResetCommand}" IsEnabled="{Binding Instance.AutomatonIsSet}" DockPanel.Dock="Left" Margin="5">Reset</Button>
+                <Button Command="{Binding Instance.EvolveCommand}" IsEnabled="{Binding Instance.AutomatonIsSet}" DockPanel.Dock="Right" Margin="5">Evolve</Button>
+            </DockPanel>
+        </StackPanel>
+    </Grid>
 </UserControl>

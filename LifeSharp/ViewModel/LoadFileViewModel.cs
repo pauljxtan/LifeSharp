@@ -7,10 +7,12 @@ using Microsoft.Win32;
 using System.Windows.Input;
 using System.IO;
 using LifeSharp.Model;
+using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Command;
 
 namespace LifeSharp.ViewModel
 {
-    public class LoadFileViewModel : ObservableObject
+    public class LoadFileViewModel : ViewModelBase
     {
         private OpenFileDialog _fileDialog;
         private string _filePath;
@@ -19,6 +21,7 @@ namespace LifeSharp.ViewModel
         public LoadFileViewModel()
         {
             _fileDialog = new OpenFileDialog();
+
         }
 
         public string FilePath
@@ -30,7 +33,7 @@ namespace LifeSharp.ViewModel
             set
             {
                 _filePath = value;
-                RaisePropertyChangedEvent("FilePath");
+                RaisePropertyChanged("FilePath");
             }
         }
 
@@ -43,7 +46,7 @@ namespace LifeSharp.ViewModel
             set
             {
                 _seed = value;
-                RaisePropertyChangedEvent("Seed");
+                RaisePropertyChanged("Seed");
                 UniverseViewModel.Instance.Automaton = new Automaton(_seed);
             }
         }
@@ -52,7 +55,7 @@ namespace LifeSharp.ViewModel
         {
             get
             {
-                return new DelegateCommand(ShowDialog);
+                return new RelayCommand(ShowDialog);
             }
         }
 

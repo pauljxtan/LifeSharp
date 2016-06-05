@@ -3,13 +3,15 @@ using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using LifeSharp.Model;
+using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Command;
 
 namespace LifeSharp.ViewModel
 {
     /// <summary>
     /// Encapsulates an Automaton object and exposes the universe for the View to bind to.
     /// </summary>
-    public class UniverseViewModel : ObservableObject
+    public class UniverseViewModel : ViewModelBase
     {
         private static UniverseViewModel _instance = new UniverseViewModel();
         private Automaton _automaton;
@@ -34,7 +36,7 @@ namespace LifeSharp.ViewModel
             set
             {
                 _automatonIsSet = value;
-                RaisePropertyChangedEvent("AutomatonIsSet");
+                RaisePropertyChanged("AutomatonIsSet");
             }
         }
 
@@ -58,7 +60,7 @@ namespace LifeSharp.ViewModel
                 AutomatonIsSet = true;
                 Age = _automaton.Age;
                 UniverseCollection = _automaton.UniverseCollection;
-                RaisePropertyChangedEvent("Automaton");
+                RaisePropertyChanged("Automaton");
             }
         }
 
@@ -72,7 +74,7 @@ namespace LifeSharp.ViewModel
             {
                 if (value < 0) throw new ArgumentOutOfRangeException();
                 _age = value;
-                RaisePropertyChangedEvent("Age");
+                RaisePropertyChanged("Age");
             }
         }
 
@@ -86,7 +88,7 @@ namespace LifeSharp.ViewModel
             {
                 if (value < 0) throw new ArgumentOutOfRangeException();
                 _numEvolutionsToDo = value;
-                RaisePropertyChangedEvent("NumEvolutions");
+                RaisePropertyChanged("NumEvolutions");
             }
         }
 
@@ -100,7 +102,7 @@ namespace LifeSharp.ViewModel
             {
                 if (value < 0) throw new ArgumentOutOfRangeException();
                 _delayBetweenEvolutions = value;
-                RaisePropertyChangedEvent("DelayBetweenEvolutions");
+                RaisePropertyChanged("DelayBetweenEvolutions");
             }
         }
 
@@ -113,7 +115,7 @@ namespace LifeSharp.ViewModel
             private set
             {
                 _universeCollection = value;
-                RaisePropertyChangedEvent("UniverseCollection");
+                RaisePropertyChanged("UniverseCollection");
             }
         }
 
@@ -121,7 +123,7 @@ namespace LifeSharp.ViewModel
         {
             get
             {
-                return new DelegateCommand(Evolve);
+                return new RelayCommand(Evolve);
             }
         }
 
@@ -129,7 +131,7 @@ namespace LifeSharp.ViewModel
         {
             get
             {
-                return new DelegateCommand(Reset);
+                return new RelayCommand(Reset);
             }
         }
 
