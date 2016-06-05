@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:LifeSharp.View"
              mc:Ignorable="d" 
-             xmlns:ViewModel="clr-namespace:LifeSharp.ViewModel;assembly=LifeSharp.ViewModel">
+             xmlns:ViewModel="clr-namespace:LifeSharp.ViewModel">
 
     <UserControl.DataContext>
         <ViewModel:LoadFileViewModel></ViewModel:LoadFileViewModel>

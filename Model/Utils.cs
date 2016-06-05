@@ -30,6 +30,7 @@ namespace LifeSharp.Model
                 int height = int.Parse(elems[0]);
                 int width = int.Parse(elems[1]);
                 int[,] array = new int[height, width];
+                Console.WriteLine("" + height + " " + width);
                 
                 int row = 0;
                 while (!parser.EndOfData)

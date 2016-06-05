@@ -1,8 +1,8 @@
-﻿using LifeSharp.Model;
-using System;
+﻿using System;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using LifeSharp.Model;
 
 namespace LifeSharp.ViewModel
 {
