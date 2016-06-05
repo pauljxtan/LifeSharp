@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LifeSharp", "LifeSharp.csproj", "{851C8700-91C5-4BDF-A903-50E22C0BA062}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LifeSharp", "LifeSharp\LifeSharp.csproj", "{851C8700-91C5-4BDF-A903-50E22C0BA062}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{F03B56C3-A406-4418-AE2A-DD43400ABDA3}"
 	ProjectSection(SolutionItems) = preProject

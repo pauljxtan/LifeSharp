@@ -3,11 +3,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{FACDC10A-94C6-497A-A2D0-036C97482D23}</ProjectGuid>
+    <ProjectGuid>{183E1FD5-5D94-4103-8987-2A7B7EC9AF6F}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>LifeSharp.ViewModelTests</RootNamespace>
-    <AssemblyName>LifeSharp.ViewModelTests</AssemblyName>
+    <RootNamespace>LifeSharp.Tests</RootNamespace>
+    <AssemblyName>LifeSharp.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -16,7 +16,6 @@
     <ReferencePath>$(ProgramFiles)\Common Files\microsoft shared\VSTT\$(VisualStudioVersion)\UITestExtensionPackages</ReferencePath>
     <IsCodedUITest>False</IsCodedUITest>
     <TestProjectType>UnitTest</TestProjectType>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -36,10 +35,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\CommonServiceLocator.1.3\lib\portable-net4+sl5+netcore45+wpa81+wp8\Microsoft.Practices.ServiceLocation.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="PresentationCore" />
     <Reference Include="System" />
   </ItemGroup>
@@ -56,16 +52,26 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="ModelTests\Convolution2DTests.cs" />
+    <Compile Include="ModelTests\GridConvolutionTests.cs" />
+    <Compile Include="ModelTests\GridNaiveTests.cs" />
+    <Compile Include="ModelTests\UtilsTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModelTests\IntToColorConverterTests.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\LifeSharp.ViewModel\LifeSharp.ViewModel.csproj">
-      <Project>{F98181F3-48E2-4B92-973D-7463AAA6C271}</Project>
-      <Name>LifeSharp.ViewModel</Name>
+    <Folder Include="ViewTests\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ModelTests\glider.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\LifeSharp\LifeSharp.csproj">
+      <Project>{851c8700-91c5-4bdf-a903-50e22c0ba062}</Project>
+      <Name>LifeSharp</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

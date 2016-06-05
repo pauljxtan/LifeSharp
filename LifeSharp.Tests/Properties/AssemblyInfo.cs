@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("LifeSharp.ModelTests")]
+[assembly: AssemblyTitle("LifeSharp.Tests")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("LifeSharp.ModelTests")]
+[assembly: AssemblyProduct("LifeSharp.Tests")]
 [assembly: AssemblyCopyright("Copyright ©  2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("9879520d-5788-486b-bdfe-3f189c685c5b")]
+[assembly: Guid("183e1fd5-5d94-4103-8987-2a7b7ec9af6f")]
 
 // Version information for an assembly consists of the following four values:
 //
