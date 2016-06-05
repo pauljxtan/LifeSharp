@@ -9,7 +9,7 @@ namespace LifeSharp.Model.Tests
     public class UtilsTests
     {
         [TestMethod()]
-        [DeploymentItem("glider.txt")]
+        [DeploymentItem(@"TestFiles\glider.txt")]
         public void GetArrayFromFileTest()
         {
             TextReader reader = File.OpenText(@"glider.txt");

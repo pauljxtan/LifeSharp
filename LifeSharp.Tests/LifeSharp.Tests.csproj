@@ -63,8 +63,8 @@
     <Folder Include="ViewTests\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="ModelTests\glider.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    <Content Include="TestFiles\glider.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
   <ItemGroup>
