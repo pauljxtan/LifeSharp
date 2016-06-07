@@ -7,29 +7,36 @@
              DataContext="{Binding UniverseViewBinding, Source={StaticResource Locator}}">
 
     <UserControl.Resources>
-        <vm:ViewModelLocator x:Key="Locator" />
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/FirstFloor.ModernUI;component/Assets/ModernUI.xaml" />
+                <ResourceDictionary Source="/FirstFloor.ModernUI;component/Assets/ModernUI.Light.xaml" />
+            </ResourceDictionary.MergedDictionaries>
 
-        <vm:IntToColorConverter x:Key="intToColorConverter"></vm:IntToColorConverter>
-        <DataTemplate x:Key="GridTemplateCol">
-            <Rectangle Stretch="UniformToFill" Margin="0">
-                <Rectangle.Fill>
-                    <SolidColorBrush Color="{Binding Converter={StaticResource intToColorConverter}}"></SolidColorBrush>
-                </Rectangle.Fill>
-            </Rectangle>
-        </DataTemplate>
+            <vm:ViewModelLocator x:Key="Locator" />
 
-        <DataTemplate x:Key="GridTemplateRow">
-            <ItemsControl ItemsSource="{Binding}" ItemTemplate="{DynamicResource GridTemplateCol}">
-                <ItemsControl.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <UniformGrid Rows="1" Margin="0"></UniformGrid>
-                    </ItemsPanelTemplate>
-                </ItemsControl.ItemsPanel>
-            </ItemsControl>
-        </DataTemplate>
+            <vm:IntToColorConverter x:Key="intToColorConverter"></vm:IntToColorConverter>
+            <DataTemplate x:Key="GridTemplateCol">
+                <Rectangle Stretch="UniformToFill" Margin="0">
+                    <Rectangle.Fill>
+                        <SolidColorBrush Color="{Binding Converter={StaticResource intToColorConverter}}"></SolidColorBrush>
+                    </Rectangle.Fill>
+                </Rectangle>
+            </DataTemplate>
+
+            <DataTemplate x:Key="GridTemplateRow">
+                <ItemsControl ItemsSource="{Binding}" ItemTemplate="{DynamicResource GridTemplateCol}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <UniformGrid Rows="1" Margin="0"></UniformGrid>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                </ItemsControl>
+            </DataTemplate>
+        </ResourceDictionary>
     </UserControl.Resources>
 
-    <Grid>
+    <Grid Style="{StaticResource ContentRoot}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="*" />
